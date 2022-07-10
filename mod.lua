@@ -1,34 +1,26 @@
 -- Candles Mod v0.0
 
--- I would recommend keeping your mod_id in a variable to access with create() methods and stuff
--- there's a bunch of methods that prepend your mod_id to the name/oids so it comes in handy!
 MOD_NAME = "candles"
 MOD_VERSION = "0.0"
 
--- register is called first to register your mod with the game
--- https://wiki.apico.buzz/wiki/Modding_API#register()
+
 function register()
-  -- register our mod name, hooks, and local modules
-  -- you can see a full list of hooks here:
-  -- https://wiki.apico.buzz/wiki/Modding_API#Hooks
   return {
     name = MOD_NAME,
     hooks = {"ready", "click"}, -- subscribe to hooks we want so they're called
-    modules = {"define", "scripts"} -- load other modules we need, in this case "/modules/define.lua" and "/modules/scripts.lua"
+    modules = {"define", "scripts", "candle", "machines"} -- load other modules we need, in this case "/modules/define.lua" and "/modules/scripts.lua"
   }
 end
 
--- init is called once registered and gives you a chance to run any setup code
--- https://wiki.apico.buzz/wiki/Modding_API#init()
 function init() 
 
   -- turn on devmode
   api_set_devmode(true)
 
-  -- log to the console
   api_log("init", "Candles loaded!")
 
-  define_item()
+  define_candles()
+  define_machines()
   -- define our mod workbench labels (for our item's recipe)
   -- api_define_workbench("Candle Maker", {
   --   t1 = "Sample Tab 1",
@@ -65,9 +57,6 @@ function init()
   return "Success"
 end
 
-
--- ready is called once all mods are ready and once the world has loaded any undefined instances from mods in the save
--- https://wiki.apico.buzz/wiki/Modding_API#ready()
 function ready()
 
   -- if we haven't already spawned our new npc, spawn them

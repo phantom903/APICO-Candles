@@ -1,14 +1,5 @@
 -- Items data
 
-candle = {
-  id = "candle",
-  name = "Candle",
-  category = "Resource",
-  tooltip = "An artisan candle crafted by a talented Beekeeper",
-  shop_key = false,
-  shop_buy = 50,
-  shop_sell = 20
-}
 
 
 -- Future ideas - maybe
@@ -99,15 +90,6 @@ double_boiler_scripts = {
 -- this is a basic item, like a tool, or a resource (log, stick, plank)
 function define_item()
   
-  api_define_item({
-    id = "basic_candle",
-    name = "Basic Candle",
-    category = "Decoration",
-    tooltip = "This is a candle!",
-    durability = 1000,
-    singular = true
-  }, "sprites/candle/candle_dyed_black_1.png")
-
   -- recipe = {
   --   { item = "log", amount = 10 },
   --   { item = "waterproof", amount = 20 },
