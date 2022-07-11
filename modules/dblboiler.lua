@@ -1,4 +1,4 @@
-function define_machines()
+function define_dblboiler()
   api_define_menu_object({
     id = "double_boiler",
     name = "Double Boiler",
