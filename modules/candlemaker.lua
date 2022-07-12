@@ -33,7 +33,7 @@ function define_candlemaker()
       "hammer1"
     },
     placeable = true,
-  }, "sprites/machines/candle_makeer_table.png", "sprites/machines/candlee_maker_edited-dp.png", {
+  }, "sprites/machines/candle_maker_table.png", "sprites/machines/candle_maker_edited-dp.png", {
     define = "cm_define",
     draw = "cm_draw",
     change = "cm_change",

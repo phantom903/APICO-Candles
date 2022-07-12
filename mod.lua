@@ -16,7 +16,7 @@ function register()
   }
 end
 
-function init() 
+function init()
 
   -- turn on devmode
   api_set_devmode(true)
@@ -57,6 +57,16 @@ function ready()
 
 end
 
-function click()
 
+function click()
+  highlighted = api_get_highlighted("obj")
+  if highlighted ~= nil then
+    inst = api_get_inst(highlighted)
+    if inst["oid"] == "shrub" then
+      chance = math.random(1, 10)
+      if chance == 1 then
+        api_create_item("candles_fiber", 1, inst["x"], inst["y"])
+      end
+    end
+  end
 end

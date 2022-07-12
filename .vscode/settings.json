@@ -1,0 +1,22 @@
+{
+  "Lua.diagnostics.globals": [
+    "api_define_item",
+    "api_define_menu_object",
+    "api_dp",
+    "api_define_gui",
+    "api_get_sprite",
+    "api_sp",
+    "api_get_cam",
+    "api_get_inst",
+    "api_draw_sprite_part",
+    "api_draw_sprite",
+    "api_get_highlighted",
+    "api_slot_match_range",
+    "api_slot_decr",
+    "api_slot_incr",
+    "api_log",
+    "api_set_devmode",
+    "api_define_recipe",
+    "api_define_liquid"
+  ]
+}
