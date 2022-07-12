@@ -33,7 +33,7 @@ function define_dblboiler()
       "hammer1"
     },
     placeable = true,
-  }, "sprites/machines/double_boiler_table.png", "sprites/machines/double_boiler_menu_final003.png", {
+  }, "sprites/machines/double_boiler_table.png", "sprites/machines/double_boiler_menu.png", {
     define = "db_define",
     draw = "db_draw",
     change = "db_change",
