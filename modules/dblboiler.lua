@@ -90,7 +90,7 @@ function db_draw(menu_id)
     api_draw_sprite(spr, 0, gx, gy)
   end
   
-  api_draw_sprite_part(spr2, 2, 0, 0, 27, smoke, g2x, g2y)
+  api_draw_sprite_part(spr2, 2, 0, 41-smoke, 27, smoke, g2x, g2y+(41-smoke))
   api_draw_sprite(spr2, 1, g2x, g2y)
   if api_get_highlighted("ui") == gui2["id"] then
     api_draw_sprite(spr2, 0, g2x, g2y)
@@ -116,9 +116,13 @@ function db_tick(menu_id)
 
   if smoke_slot["count"] > 0 and (api_gp(menu_id, "s_start") < (api_gp(menu_id, "s_end"))) then
     api_slot_decr(smoke_slot["id"])
-    api_sp(menu_id, "s_start", api_gp(menu_id, "s_start") + 2)
-    if api_gp(menu_id, "s_start") > 100 then
-      api_sp(menu_id, "s_start", 100)
+    if api_gp(menu_id, "s_start") > 48 then 
+      api_sp(menu_id, "s_start", 50)
+    else
+      api_sp(menu_id, "s_start", api_gp(menu_id, "s_start") + 2)
+    end
+    if api_gp(menu_id, "s_start") > 50 then
+      api_sp(menu_id, "s_start", 50)
     end
   end
   wax = api_gp(menu_id, "tank_amount")
