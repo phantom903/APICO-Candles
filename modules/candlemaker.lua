@@ -72,11 +72,15 @@ function cm_draw(menu_id)
 end
 
 function cm_change(menu_id)
-  input_slot = api_slot_match_range(menu_id, {"ANY"}, {1,2,3,4,5,6}, true)
-  if input_slot ~= nil then
-    api_sp(menu_id, "working", true)
-  else
-    api_sp(menu_id, "working", false)
+  -- input_slot = api_slot_match_range(menu_id, {"ANY"}, {1,2,3,4,5,6}, true)
+  -- if input_slot ~= nil then
+  --   api_sp(menu_id, "working", true)
+  -- else
+  --   api_sp(menu_id, "working", false)
+  -- end
+  input_can = api_get_slot(menu_id, 1)
+  if input_can["item"] == "canister1" or input_can["item"] == "canister2" then
+    api_slot_fill(menu_id, 1)
   end
 end
 
