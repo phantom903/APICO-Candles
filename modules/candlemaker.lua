@@ -7,15 +7,10 @@ function define_candlemaker()
     shop_buy = 30,
     shop_sell = 15,
     layout = {
---      {8, 18, "Input", {"beeswax"}},
---      {8, 41, "Input", {"beeswax"}},
---      {8, 64, "Input", {"beeswax"}},
---      {31, 18, "Input", {"beeswax"}},
---      {31, 41, "Input", {"beeswax"}},
- --     {31, 64, "Input", {"beeswax"}},
---      {122, 64, "Liquid Output"},
---      {122, 64, "Output"},
---      {8, 90}, {30, 90}, {53, 90}, {76, 90}, {99, 90}, {122, 90}
+     {7, 63, "Liquid Input", {"canister1", "canister2"}},
+     {30, 63, "Input", {"candles_cndwick"}},
+     {122, 17, "Output"},
+     {7, 89}, {30, 89}, {53, 89}, {76, 89}, {99, 89}, {122, 89}
     },
     buttons = {
       "Help",
@@ -23,17 +18,18 @@ function define_candlemaker()
       "Close"
     },
     info = {
-      {"1. Input Candle Wax", "GREEN"},
-      {"2. Stored Liquid Candle Wax", "YELLOW"},
-      {"3. Output Candles", "RED"},
-      {"4. Extra Storage", "WHITE"}
+      {"1. Stored Liquid Candle Wax", "YELLOW"},
+      {"2. Candle Wax Input", "GREEN"},
+      {"3. Candle Wick Input", "BLUE"},
+      {"4. Candles Output", "RED"},
+      {"5. Extra Storage", "WHITE"}
     },
     tools = {
       "mouse1",
       "hammer1"
     },
     placeable = true,
-  }, "sprites/machines/candle_maker_table.png", "sprites/machines/candle_maker_edited-dp.png", {
+  }, "sprites/machines/candle_maker_table.png", "sprites/machines/candle_maker_menu_final007.png", {
     define = "cm_define",
     draw = "cm_draw",
     change = "cm_change",
@@ -48,7 +44,7 @@ function cm_define(menu_id)
   api_dp(menu_id, "p_start", 0)
   api_dp(menu_id, "p_end", 1)
 
-  api_define_gui(menu_id, "cm_progress_bar", 55, 21, "candle_maker_bar_gui_tooltip", "sprites/candlemaker_gui_arrow.png")
+  api_define_gui(menu_id, "cm_progress_bar", 28, 21, "candle_maker_bar_gui_tooltip", "sprites/cnd_maker_gui_arrow.png")
 
   spr = api_get_sprite("sp_candles_cm_progress_bar")
   api_dp(menu_id, "progress_bar_sprite", spr)
@@ -56,6 +52,7 @@ function cm_define(menu_id)
   fields = {"p_start", "p_end"}
   fields = api_sp(menu_id, "_fields", fields)
  
+  api_define_tank(menu_id, 0, 3200, "Candlewax", 7, 14, "large")
 end
 
 function cm_draw(menu_id)
@@ -64,12 +61,14 @@ function cm_draw(menu_id)
   spr = api_gp(menu_id, "progress_bar_sprite")
   gx = gui["x"] - cam["x"]
   gy = gui["y"] - cam["y"]
-  progress = (api_gp(menu_id, "p_start") / api_gp(menu_id, "p_end") * 68)
+  progress = (api_gp(menu_id, "p_start") / api_gp(menu_id, "p_end") * 91)
   api_draw_sprite_part(spr, 2, 0, 0, progress, 10, gx, gy)
   api_draw_sprite(spr, 1, gx, gy)
   if api_get_highlighted("ui") == gui["id"] then
     api_draw_sprite(spr, 0, gx, gy)
   end
+
+  api_draw_tank(api_gp(menu_id, "tank_gui"))
 end
 
 function cm_change(menu_id)

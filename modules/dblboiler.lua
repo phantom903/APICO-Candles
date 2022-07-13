@@ -100,9 +100,7 @@ function db_draw(menu_id)
 end
 
 function db_change(menu_id)
-  input_slot = api_slot_match_range(menu_id, {"ANY"}, {1,2,3,4}, true)
   output_can = api_get_slot(menu_id, 6)
-  smoke_slot = api_get_slot(menu_id, 5)
   if output_can["item"] == "canister1" or output_can["item"] == "canister2" then
     api_slot_drain(menu_id, 6)
   end
