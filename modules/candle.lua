@@ -20,8 +20,8 @@ function define_wick()
     shop_buy = 10,
     shop_sell = 0
   }, "sprites/candle_wick001.png")
-  api_define_recipe("crafting", "candles_cndwick", {{ item = "candles_fiber", amount = 10}}, 1)
-  api_define_workbench("Candles", { 
+  api_define_recipe("crafting", MOD_NAME .. "_cndwick", {{ item = MOD_NAME .. "_fiber", amount = 10}}, 1)
+  api_define_workbench("Candles Mod", { 
     t1 = "Candles"
   })
 end

@@ -9,7 +9,6 @@ function define_dblboiler()
     layout = {
       {8, 17, "Input", {"beeswax"}},
       {8, 40, "Input", {"beeswax"}},
---      {8, 64, "Input", {"beeswax"}},
       {31, 17, "Input", {"beeswax"}},
       {31, 40, "Input", {"beeswax"}},
       {31, 63, "Input", {"sawdust2"}},
@@ -43,7 +42,6 @@ function define_dblboiler()
 end
 
 function db_define(menu_id)
---  api_dp(menu_id, "loaded", false)
   api_dp(menu_id, "working", false)
   api_dp(menu_id, "smoking", false)
   
