@@ -19,11 +19,8 @@ function define_wick()
     shop_key = false,
     shop_buy = 10,
     shop_sell = 0
-  }, "sprites/candle_wick001.png")
-  api_define_recipe("crafting", MOD_NAME .. "_cndwick", {{ item = MOD_NAME .. "_fiber", amount = 10}}, 1)
-  api_define_workbench("Candles Mod", { 
-    t1 = "Candles"
-  })
+  }, "sprites/candle/candle_wick001.png")
+  api_define_recipe("t1", MOD_NAME .. "_cndwick", {{ item = MOD_NAME .. "_fiber", amount = 10}}, 1)
 end
 
 function define_liquid_wax()
@@ -36,10 +33,43 @@ function define_liquid_wax()
   )
 end
 
+function define_molds()
+  api_define_item({
+    id = "cndmold1",
+    name = "Wooden Mold",
+    category = "Resource",
+    tooltip = "A candle-making mold made from wood",
+    shop_key = false,
+    shop_buy = 10,
+    shop_sell = 0,
+    durability = 3
+  }, "sprites/candle/candle_mold1.png")
+  api_define_recipe("t2", MOD_NAME .. "_cndmold1", {{ item = "planks1", amount = 5}, { item = "sticks1", amount = 2}}, 1)
+
+  api_define_item({
+    id = "cndmold2",
+    name = "Infused Mold",
+    category = "Resource",
+    tooltip = "A sturdier candle-making mold",
+    shop_key = false,
+    shop_buy = 10,
+    shop_sell = 0,
+    durability = 5
+  }, "sprites/candle/candle_mold2.png")
+  api_define_recipe("t2", MOD_NAME .. "_cndmold2", {{ item = "planks2", amount = 5}, { item = "sticks2", amount = 2}}, 1)
+
+end
+
 function define_candles()
   define_fiber()
   define_wick()
+  define_molds()
   define_liquid_wax()
+  api_define_workbench("Candles Mod", {
+    t1 = "Basic Resources",
+    t2 = "Candle Making"
+  })
+
   api_define_item({
     id = "cndunlit1",
     name = "Basic Unlit Candle",
