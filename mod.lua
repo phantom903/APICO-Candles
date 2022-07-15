@@ -11,8 +11,8 @@ end
 function register()
   return {
     name = MOD_NAME,
-    hooks = {"ready", "click"},
-    modules = {"candle", "dblboiler", "candlemaker"}
+    hooks = {"ready", "click", "worldgen"},
+    modules = {"candle", "dblboiler", "candlemaker", "commands"}
   }
 end
 
@@ -25,21 +25,8 @@ function init()
 
   define_candles()
   define_machines()
-  -- define our mod workbench labels (for our item's recipe)
-  -- api_define_workbench("Candle Mod", {
-  --   t1 = "Sample Tab 1",
-  --   t2 = "Sample Tab 2",
-  --   t3 = "Sample Tab 3",
-  --   t4 = "Sample Tab 4",
-  --   t5 = "Sample Tab 5",
-  -- })
-  -- define a custom command so we can spawn in all our new goodies
-  -- "command_treats" is defined in "scripts.lua"
-  -- api_define_command('/treats', "command_treats")
+  api_define_command('/get_pos', "command_playerpos")
 
-  -- if you dont return success here your mod will not load
-  -- this can be useful if your define fails as you can decide to NOT return "Success" to tell APICO 
-  -- that something went wrong and to ignore your mod
   return "Success"
 end
 
@@ -66,6 +53,16 @@ function click()
       chance = math.random(1, 10)
       if chance == 1 then
         api_create_item("candles_fiber", 1, inst["x"], inst["y"])
+      end
+    end
+  end
+end
+
+function worldgen(before_objects)
+  if before_objects then
+    for x = 1200, 1360, 16 do
+      for y = 1200, 1360, 16 do
+        api_set_ground("grass1", x, y)
       end
     end
   end

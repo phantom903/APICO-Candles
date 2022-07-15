@@ -52,13 +52,13 @@ function db_define(menu_id)
   api_dp(menu_id, "s_start", 0)
   api_dp(menu_id, "s_end", 50)
 
-  api_define_gui(menu_id, "progress_bar", 50, 21, "dbl_boiler_bar_gui_tooltip", "sprites/dblboil_gui_arrow.png")
-  spr = api_get_sprite("sp_candles_progress_bar")
-  api_dp(menu_id, "progress_bar_sprite", spr)
+  api_define_gui(menu_id, "db_progress_bar", 50, 21, "db_progress_tooltip", "sprites/dblboil_gui_arrow.png")
+  spr = api_get_sprite("sp_candles_db_progress_bar")
+  api_dp(menu_id, "db_progress_bar_sprite", spr)
 
   api_define_tank(menu_id,0,3200,"Candlewax", 123, 14, "large")
 
-  api_define_gui(menu_id, "dbl_boil_smoke", 72, 30, "dbl_boil_smoke_tooltip", "sprites/dbl_boiler_heat.png")
+  api_define_gui(menu_id, "dbl_boil_smoke", 72, 30, "db_smoke_tooltip", "sprites/dbl_boiler_heat.png")
   spr2 = api_get_sprite("sp_candles_dbl_boil_smoke")
   api_dp(menu_id, "smoke_sprite", spr2)
 
@@ -68,8 +68,8 @@ end
 
 function db_draw(menu_id)
   cam = api_get_cam()
-  gui = api_get_inst(api_gp(menu_id, "progress_bar"))
-  spr = api_gp(menu_id, "progress_bar_sprite")
+  gui = api_get_inst(api_gp(menu_id, "db_progress_bar"))
+  spr = api_gp(menu_id, "db_progress_bar_sprite")
 
   gui2 = api_get_inst(api_gp(menu_id, "dbl_boil_smoke"))
   spr2 = api_gp(menu_id, "smoke_sprite")
@@ -159,7 +159,7 @@ function db_tick(menu_id)
   end
 end
 
-function dbl_boiler_bar_gui_tooltip(menu_id)
+function db_progress_tooltip(menu_id)
   progress = math.floor((api_gp(menu_id, "p_start") / api_gp(menu_id, "p_end")) * 100)
   percent = tostring(progress) .. "%"
   return {
@@ -168,7 +168,7 @@ function dbl_boiler_bar_gui_tooltip(menu_id)
   }
 end
 
-function dbl_boil_smoke_tooltip(menu_id)
+function db_smoke_tooltip(menu_id)
   smoke = math.floor((api_gp(menu_id, "s_start") / api_gp(menu_id, "s_end")) * 100)
   percent = tostring(smoke) .. "%"
   return {

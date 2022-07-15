@@ -40,83 +40,94 @@ function define_candlemaker()
 end
 
 function cm_define(menu_id)
-  api_dp(menu_id, "wicks_present", false)
-  api_dp(menu_id, "working", false)
-  api_dp(menu_id, "p_start", 0)
-  api_dp(menu_id, "p_end", 1)
-  api_dp(menu_id, "tank_amount", 0)
+  -- api_dp(menu_id, "wicks_present", false)
+  -- api_dp(menu_id, "working", false)
+  -- api_dp(menu_id, "p_start", 0)
+  -- api_dp(menu_id, "p_end", 1)
+  -- api_dp(menu_id, "tank_amount", 0)
+  -- api_dp(menu_id, "mouse_y", 0)
 
-  api_define_gui(menu_id, "cm_progress_bar", 28, 21, "candle_maker_bar_gui_tooltip", "sprites/cnd_maker_gui_arrow.png")
+  -- api_define_gui(menu_id, "cm_progress_bar", 28, 21, "cm_progress_tooltip", "sprites/cnd_maker_gui_arrow.png")
+  -- api_define_gui(menu_id, "cm_press_lever", 76, 32, "cm_lever_tooltip", "sprites/mech_handle.png", "cm_lever_click")
+  -- spr = api_get_sprite("sp_candles_cm_progress_bar")
+  -- api_dp(menu_id, "cm_progress_bar_sprite", spr)
+  -- spr = api_get_sprite("sp_candles_cm_press_lever")
+  -- api_dp(menu_id, "cm_press_lever_sprite", spr)
 
-  spr = api_get_sprite("sp_candles_cm_progress_bar")
-  api_dp(menu_id, "progress_bar_sprite", spr)
-
-  fields = {"p_start", "p_end"}
-  fields = api_sp(menu_id, "_fields", fields)
+  -- fields = {"p_start", "p_end"}
+  -- fields = api_sp(menu_id, "_fields", fields)
  
-  api_define_tank(menu_id, 0, 3200, "Candlewax", 7, 14, "large")
+  -- api_define_tank(menu_id, 0, 3200, "Candlewax", 7, 14, "large")
 end
 
 function cm_draw(menu_id)
-  cam = api_get_cam()
-  gui = api_get_inst(api_gp(menu_id, "cm_progress_bar"))
-  spr = api_gp(menu_id, "progress_bar_sprite")
-  gx = gui["x"] - cam["x"]
-  gy = gui["y"] - cam["y"]
-  progress = (api_gp(menu_id, "p_start") / api_gp(menu_id, "p_end") * 91)
-  api_draw_sprite_part(spr, 2, 0, 0, progress, 10, gx, gy)
-  api_draw_sprite(spr, 1, gx, gy)
-  if api_get_highlighted("ui") == gui["id"] then
-    api_draw_sprite(spr, 0, gx, gy)
-  end
-
-  api_draw_tank(api_gp(menu_id, "tank_gui"))
+  -- cam = api_get_cam()
+  -- gui = api_get_inst(api_gp(menu_id, "cm_progress_bar"))
+  -- spr = api_gp(menu_id, "cm_progress_bar_sprite")
+  -- gx = gui["x"] - cam["x"]
+  -- gy = gui["y"] - cam["y"]
+  -- progress = (api_gp(menu_id, "p_start") / api_gp(menu_id, "p_end") * 91)
+  -- api_draw_sprite_part(spr, 2, 0, 0, progress, 10, gx, gy)
+  -- api_draw_sprite(spr, 1, gx, gy)
+  -- if api_get_highlighted("ui") == gui["id"] then
+  --   api_draw_sprite(spr, 0, gx, gy)
+  -- end
+  -- gui2 = api_get_inst(api_gp(menu_id, "cm_press_lever"))
+  -- spr2 = api_gp(menu_id, "cm_press_lever_sprite")
+  -- gx2 = gui2["x"] - cam["x"]
+  -- gy2 = gui2["y"] - cam["y"]
+  -- api_draw_sprite(spr2, 1, gx2, gy2)
+  -- api_draw_sprite(spr2, 2, gx2, gy2)
+  -- if api_get_highlighted("ui") == gui2["id"] then
+  --   api_draw_sprite(spr2, 0, gx2, gy2)
+  -- end
+  -- api_draw_tank(api_gp(menu_id, "tank_gui"))
 end
 
 function cm_change(menu_id)
-  wick_slot = api_get_slot(menu_id, 2)
-  if wick_slot ~= nil then
-    api_sp(menu_id, "wicks_present", true)
-  else
-    api_sp(menu_id, "wicks_present", false)
-  end
-  input_can = api_get_slot(menu_id, 1)
-  if input_can["item"] == "canister1" or input_can["item"] == "canister2" then
-    api_slot_fill(menu_id, 1)
-  end
-  if api_gp(menu_id, "wicks_present") == true and api_dp(menu_id, "tank_amount") >= 200 then
-    api_sp(menu_id, "working", true)
-  end
+  -- wick_slot = api_get_slot(menu_id, 2)
+  -- if wick_slot ~= nil then
+  --   api_sp(menu_id, "wicks_present", true)
+  -- else
+  --   api_sp(menu_id, "wicks_present", false)
+  -- end
+  -- input_can = api_get_slot(menu_id, 1)
+  -- if input_can["item"] == "canister1" or input_can["item"] == "canister2" then
+  --   api_slot_fill(menu_id, 1)
+  -- end
+  -- if api_gp(menu_id, "wicks_present") == true and api_dp(menu_id, "tank_amount") >= 200 then
+  --   api_sp(menu_id, "working", true)
+  -- end
 end
 
 function cm_tick(menu_id)
-  if api_gp(menu_id, "working") == true then
-    -- api_sp(menu_id, "p_start", api_gp(menu_id, "p_start") + 0.1)
-    -- if api_gp(menu_id, "p_start") >= api_gp(menu_id, "p_end") then
-    --   api_sp(menu_id, "p_start", 0)
-    --   input_slot = api_slot_match_range(menu_id, {"ANY"}, {1,2,3,4,5,6}, true)
-    --   if input_slot ~= nil then
-    --     api_slot_decr(input_slot["id"])
-    --     output_slot = api_slot_match_range(menu_id, {""}, {7}, true)
-    --     if output_slot ~= nil then
-    --       if output_slot["item"] == "" then
-    --         api_slot_set(output_slot["id"], "candles_cndunlit1", 1)
-    --       else
-    --         api_slot_incr(output_slot["id"])
-    --       end
-    --     end
-    --     input_slot = api_slot_match_range(menu_id, {"ANY"}, {1,2,3,4,5,6}, true)
-    --     if input_slot == nil then api_sp(menu_id, "working", false) end
-    --   end
-    -- end
-  end
+  -- if api_gp(menu_id, "working") == true then
+  --   api_sp(menu_id, "p_start", api_gp(menu_id, "p_start") + 0.1)
+  --   if api_gp(menu_id, "p_start") >= api_gp(menu_id, "p_end") then
+  --     api_sp(menu_id, "p_start", 0)
+  --     input_slot = api_slot_match_range(menu_id, {"ANY"}, {1,2,3,4,5,6}, true)
+  --     if input_slot ~= nil then
+  --       api_slot_decr(input_slot["id"])
+  --       output_slot = api_slot_match_range(menu_id, {""}, {7}, true)
+  --       if output_slot ~= nil then
+  --         if output_slot["item"] == "" then
+  --           api_slot_set(output_slot["id"], "candles_cndunlit1", 1)
+  --         else
+  --           api_slot_incr(output_slot["id"])
+  --         end
+  --       end
+  --       input_slot = api_slot_match_range(menu_id, {"ANY"}, {1,2,3,4,5,6}, true)
+  --       if input_slot == nil then api_sp(menu_id, "working", false) end
+  --     end
+  --   end
+  -- end
 end
 
-function candle_maker_bar_gui_tooltip(menu_id)
-  progress = math.floor((api_gp(menu_id, "p_start") / api_gp(menu_id, "p_end")) * 100)
-  percent = tostring(progress) .. "%"
-  return {
-    {"Progress", "FONT_WHITE"},
-    {percent, "FONT_BGREY"}
-  }
-end
+-- function cm_progress_tooltip(menu_id)
+--   progress = math.floor((api_gp(menu_id, "p_start") / api_gp(menu_id, "p_end")) * 100)
+--   percent = tostring(progress) .. "%"
+--   return {
+--     {"Progress", "FONT_WHITE"},
+--     {percent, "FONT_BGREY"}
+--   }
+-- end
