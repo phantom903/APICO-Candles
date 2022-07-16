@@ -13,7 +13,7 @@ function register()
     name = MOD_NAME,
     -- hooks = {"ready", "click", "worldgen"},
     hooks = {"ready", "click"},
-    modules = {"candle", "dblboiler", "candlemaker", "commands", "npc"}
+    modules = {"candle", "dblboiler", "candlemaker", "commands", "npc", "candles_all"}
   }
 end
 

@@ -1,4 +1,4 @@
-function define_fiber()
+function define_candle_items()
   api_define_item({
     id = "fiber",
     name = "Fiber",
@@ -7,10 +7,8 @@ function define_fiber()
     shop_key = false,
     shop_buy = 10,
     shop_sell = 0
-  }, "sprites/plant_fiber001.png")
-end
+  }, "sprites/candle/plant_fiber.png")
 
-function define_wick()
   api_define_item({
     id = "cndwick",
     name = "Candle Wick",
@@ -19,21 +17,17 @@ function define_wick()
     shop_key = false,
     shop_buy = 10,
     shop_sell = 0
-  }, "sprites/candle/candle_wick001.png")
+  }, "sprites/candle/candle_wick.png")
   api_define_recipe("t1", MOD_NAME .. "_cndwick", {{ item = MOD_NAME .. "_fiber", amount = 10}}, 1)
-end
 
-function define_liquid_wax()
   api_define_color("WAXYELLOW", {r=149, g=140, b=91})
   api_define_liquid(
     "Candlewax",
     "WAXYELLOW",
-    "sprites/cndwaxtexture.png",
-    "sprites/cndwaxpreview.png"
+    "sprites/wax/cndwaxtexture.png",
+    "sprites/wax/cndwaxpreview.png"
   )
-end
 
-function define_molds()
   api_define_item({
     id = "cndmold1",
     name = "Wooden Mold",
@@ -58,27 +52,25 @@ function define_molds()
   }, "sprites/candle/candle_mold2.png")
   api_define_recipe("t2", MOD_NAME .. "_cndmold2", {{ item = "planks2", amount = 5}, { item = "sticks2", amount = 2}}, 1)
 
+  api_define_item({
+    id = "cndmold3",
+    name = "Honeycore Mold",
+    category = "Resource",
+    tooltip = "A strong, long lasting candle mold",
+    shop_key = false,
+    shop_buy = 100,
+    shop_sell = 20,
+    durability = 10,
+    honeycore = true
+  }, "sprites/candle/candle_mold3.png")
 end
 
 function define_candles()
-  define_fiber()
-  define_wick()
-  define_molds()
-  define_liquid_wax()
+  define_candle_items()
+  define_candles_all()
   api_define_workbench("Candles Mod", {
     t1 = "Basic Resources",
     t2 = "Candle Making"
   })
-
-  api_define_item({
-    id = "cndunlit1",
-    name = "Basic Unlit Candle",
-    category = "Resource",
-    tooltip = "This is a candle!",
-    durability = 1000,
-    shop_key = false,
-    shop_buy = 50,
-    shop_sell = 20
-  }, "sprites/candle/candle_dyed_black_1.png")
 
 end

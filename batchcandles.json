@@ -1,0 +1,116 @@
+{
+  "1" : {
+    "id" : "1",
+    "name" : "Basic Candle",
+    "tooltip" : "A basic, undyed candle",
+    "tier" : 0
+  },
+  "2" : {
+    "id" : "2",
+    "name" : "Black Candle",
+    "tooltip" : "A candle infused with Hivesbane",
+    "tier" : 2
+  },
+  "3" : {
+    "id" : "3",
+    "name" : "Blue Candle",
+    "tooltip" : "A candle infused with Beekeepers Delight",
+    "tier" : 1
+  },
+  "4" : {
+    "id" : "4",
+    "name" : "Brown Candle",
+    "tooltip" : "A candle infused with Combristle",
+    "tier" : 3
+  },
+  "5" : {
+    "id" : "5",
+    "name" : "Glowing Candle",
+    "tooltip" : "A candle infused with Glowing Bees",
+    "tier" : 4
+  },
+  "6" : {
+    "id" : "6",
+    "name" : "Gold Candle",
+    "tooltip" : "A candle infused with Honeydrop",
+    "tier" : 3
+  },
+  "7" : {
+    "id" : "7",
+    "name" : "Green Candle",
+    "tooltip" : "A candle infused with Honeybriar",
+    "tier" : 2
+  },
+  "8" : {
+    "id" : "8",
+    "name" : "Hallowed Candle",
+    "tooltip" : "A candle infused with Hallowed Bees",
+    "tier" : 4
+  },
+  "9" : {
+    "id" : "9",
+    "name" : "Icy Candle",
+    "tooltip" : "A candle infused with Icy Bees",
+    "tier" : 4
+  },
+  "10" : {
+    "id" : "10",
+    "name" : "Orange Candle",
+    "tooltip" : "A candle infused with Goldenrod",
+    "tier" : 2
+  },
+  "11" : {
+    "id" : "11",
+    "name" : "Pink Candle",
+    "tooltip" : "A candle infused with Beewell",
+    "tier" : 3
+  },
+  "12" : {
+    "id" : "12",
+    "name" : "Purple Candle",
+    "tooltip" : "A candle infused with Beesknees",
+    "tier" : 2
+  },
+  "13" : {
+    "id" : "13",
+    "name" : "Red Candle",
+    "tooltip" : "A candle infused with Honeyrose",
+    "tier" : 1
+  },
+  "14" : {
+    "id" : "14",
+    "name" : "Shrouded Candle",
+    "tooltip" : "A candle infused with Shrouded Bees",
+    "tier" : 4   
+  },
+  "15" : {
+    "id" : "15",
+    "name" : "Sparkling Candle",
+    "tooltip" : "A candle infused with Sparkling Bees",
+    "tier" : 4   
+  },
+  "16" : {
+    "id" : "16",
+    "name" : "Turquoise Candle",
+    "tooltip" : "A candle infused with Frosteria",
+    "tier" : 3   
+  },
+  "17" : {
+    "id" : "17",
+    "name" : "White Candle",
+    "tooltip" : "A candle infused with Pondshine",
+    "tier" : 2   
+  },
+  "18" : {
+    "id" : "18",
+    "name" : "Yellow Candle",
+    "tooltip" : "A candle infused with Swarmwort",
+    "tier" : 1 
+  },
+  "19" : {
+    "id" : "19",
+    "name" : "Lime Candle",
+    "tooltip" : "A candle infused with Hivanium",
+    "tier" : 3
+  }
+}
