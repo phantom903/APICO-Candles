@@ -8,22 +8,9 @@ function define_candles_all()
 		placeable = true,
 		singular = true,
 		shop_key = false,
-		shop_sell = 0,
-		shop_buy = 0
+		shop_sell = 0.1,
+		shop_buy = 0.5
 	}, 'sprites/candle/candle1c.png')
-
-	api_define_item({
-		id = 'candle1b',
-		name = 'Basic Candle',
-		category = 'Resource',
-		tooltip = 'A basic, undyed candle',
-		durability = 1000,
-		placeable = true,
-		singular = true,
-		shop_key = false,
-		shop_sell = 0,
-		shop_buy = 0
-	}, 'sprites/candle/candle1b.png')
 
 	api_define_item({
 		id = 'candle1d',
@@ -34,9 +21,22 @@ function define_candles_all()
 		placeable = true,
 		singular = true,
 		shop_key = false,
-		shop_sell = 0,
-		shop_buy = 0
+		shop_sell = 0.1,
+		shop_buy = 0.5
 	}, 'sprites/candle/candle1d.png')
+
+	api_define_item({
+		id = 'candle1b',
+		name = 'Basic Candle',
+		category = 'Resource',
+		tooltip = 'A basic, undyed candle',
+		durability = 1000,
+		placeable = true,
+		singular = true,
+		shop_key = false,
+		shop_sell = 0.1,
+		shop_buy = 0.5
+	}, 'sprites/candle/candle1b.png')
 
 	api_define_item({
 		id = 'candle1a',
@@ -46,8 +46,8 @@ function define_candles_all()
 		machines = {'workbench'},
 		shop_key = true,
 		singular = false,
-		shop_sell = 0,
-		shop_buy = 0
+		shop_sell = 0.1,
+		shop_buy = 0.5
 	}, 'sprites/candle/candle1a.png')
 
 	api_define_item({
@@ -60,21 +60,8 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 25,
-		shop_buy = 100
+		shop_buy = 50
 	}, 'sprites/candle/candle2c.png')
-
-	api_define_item({
-		id = 'candle2b',
-		name = 'Black Candle',
-		category = 'Resource',
-		tooltip = 'A candle infused with Hivesbane',
-		durability = 1000,
-		placeable = true,
-		singular = true,
-		shop_key = false,
-		shop_sell = 25,
-		shop_buy = 100
-	}, 'sprites/candle/candle2b.png')
 
 	api_define_item({
 		id = 'candle2d',
@@ -86,8 +73,21 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 25,
-		shop_buy = 100
+		shop_buy = 50
 	}, 'sprites/candle/candle2d.png')
+
+	api_define_item({
+		id = 'candle2b',
+		name = 'Black Candle',
+		category = 'Resource',
+		tooltip = 'A candle infused with Hivesbane',
+		durability = 1000,
+		placeable = true,
+		singular = true,
+		shop_key = false,
+		shop_sell = 25,
+		shop_buy = 50
+	}, 'sprites/candle/candle2b.png')
 
 	api_define_item({
 		id = 'candle2a',
@@ -98,7 +98,7 @@ function define_candles_all()
 		shop_key = true,
 		singular = false,
 		shop_sell = 25,
-		shop_buy = 100
+		shop_buy = 50
 	}, 'sprites/candle/candle2a.png')
 
 	api_define_item({
@@ -111,21 +111,8 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 10,
-		shop_buy = 0
+		shop_buy = 15
 	}, 'sprites/candle/candle3c.png')
-
-	api_define_item({
-		id = 'candle3b',
-		name = 'Blue Candle',
-		category = 'Resource',
-		tooltip = 'A candle infused with Beekeepers Delight',
-		durability = 1000,
-		placeable = true,
-		singular = true,
-		shop_key = false,
-		shop_sell = 10,
-		shop_buy = 0
-	}, 'sprites/candle/candle3b.png')
 
 	api_define_item({
 		id = 'candle3d',
@@ -137,8 +124,21 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 10,
-		shop_buy = 0
+		shop_buy = 15
 	}, 'sprites/candle/candle3d.png')
+
+	api_define_item({
+		id = 'candle3b',
+		name = 'Blue Candle',
+		category = 'Resource',
+		tooltip = 'A candle infused with Beekeepers Delight',
+		durability = 1000,
+		placeable = true,
+		singular = true,
+		shop_key = false,
+		shop_sell = 10,
+		shop_buy = 15
+	}, 'sprites/candle/candle3b.png')
 
 	api_define_item({
 		id = 'candle3a',
@@ -149,7 +149,7 @@ function define_candles_all()
 		shop_key = true,
 		singular = false,
 		shop_sell = 10,
-		shop_buy = 0
+		shop_buy = 15
 	}, 'sprites/candle/candle3a.png')
 
 	api_define_item({
@@ -162,21 +162,8 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 50,
-		shop_buy = 200
+		shop_buy = 100
 	}, 'sprites/candle/candle4c.png')
-
-	api_define_item({
-		id = 'candle4b',
-		name = 'Brown Candle',
-		category = 'Resource',
-		tooltip = 'A candle infused with Combristle',
-		durability = 1000,
-		placeable = true,
-		singular = true,
-		shop_key = false,
-		shop_sell = 50,
-		shop_buy = 200
-	}, 'sprites/candle/candle4b.png')
 
 	api_define_item({
 		id = 'candle4d',
@@ -188,8 +175,21 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 50,
-		shop_buy = 200
+		shop_buy = 100
 	}, 'sprites/candle/candle4d.png')
+
+	api_define_item({
+		id = 'candle4b',
+		name = 'Brown Candle',
+		category = 'Resource',
+		tooltip = 'A candle infused with Combristle',
+		durability = 1000,
+		placeable = true,
+		singular = true,
+		shop_key = false,
+		shop_sell = 50,
+		shop_buy = 100
+	}, 'sprites/candle/candle4b.png')
 
 	api_define_item({
 		id = 'candle4a',
@@ -200,7 +200,7 @@ function define_candles_all()
 		shop_key = true,
 		singular = false,
 		shop_sell = 50,
-		shop_buy = 200
+		shop_buy = 100
 	}, 'sprites/candle/candle4a.png')
 
 	api_define_item({
@@ -217,19 +217,6 @@ function define_candles_all()
 	}, 'sprites/candle/candle5c.png')
 
 	api_define_item({
-		id = 'candle5b',
-		name = 'Glowing Candle',
-		category = 'Resource',
-		tooltip = 'A candle infused with Glowing Bees',
-		durability = 1000,
-		placeable = true,
-		singular = true,
-		shop_key = false,
-		shop_sell = 100,
-		shop_buy = 250
-	}, 'sprites/candle/candle5b.png')
-
-	api_define_item({
 		id = 'candle5d',
 		name = 'Glowing Candle',
 		category = 'Resource',
@@ -241,6 +228,19 @@ function define_candles_all()
 		shop_sell = 100,
 		shop_buy = 250
 	}, 'sprites/candle/candle5d.png')
+
+	api_define_item({
+		id = 'candle5b',
+		name = 'Glowing Candle',
+		category = 'Resource',
+		tooltip = 'A candle infused with Glowing Bees',
+		durability = 1000,
+		placeable = true,
+		singular = true,
+		shop_key = false,
+		shop_sell = 100,
+		shop_buy = 250
+	}, 'sprites/candle/candle5b.png')
 
 	api_define_item({
 		id = 'candle5a',
@@ -264,21 +264,8 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 50,
-		shop_buy = 200
+		shop_buy = 100
 	}, 'sprites/candle/candle6c.png')
-
-	api_define_item({
-		id = 'candle6b',
-		name = 'Gold Candle',
-		category = 'Resource',
-		tooltip = 'A candle infused with Honeydrop',
-		durability = 1000,
-		placeable = true,
-		singular = true,
-		shop_key = false,
-		shop_sell = 50,
-		shop_buy = 200
-	}, 'sprites/candle/candle6b.png')
 
 	api_define_item({
 		id = 'candle6d',
@@ -290,8 +277,21 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 50,
-		shop_buy = 200
+		shop_buy = 100
 	}, 'sprites/candle/candle6d.png')
+
+	api_define_item({
+		id = 'candle6b',
+		name = 'Gold Candle',
+		category = 'Resource',
+		tooltip = 'A candle infused with Honeydrop',
+		durability = 1000,
+		placeable = true,
+		singular = true,
+		shop_key = false,
+		shop_sell = 50,
+		shop_buy = 100
+	}, 'sprites/candle/candle6b.png')
 
 	api_define_item({
 		id = 'candle6a',
@@ -302,7 +302,7 @@ function define_candles_all()
 		shop_key = true,
 		singular = false,
 		shop_sell = 50,
-		shop_buy = 200
+		shop_buy = 100
 	}, 'sprites/candle/candle6a.png')
 
 	api_define_item({
@@ -315,21 +315,8 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 25,
-		shop_buy = 100
+		shop_buy = 50
 	}, 'sprites/candle/candle7c.png')
-
-	api_define_item({
-		id = 'candle7b',
-		name = 'Green Candle',
-		category = 'Resource',
-		tooltip = 'A candle infused with Honeybriar',
-		durability = 1000,
-		placeable = true,
-		singular = true,
-		shop_key = false,
-		shop_sell = 25,
-		shop_buy = 100
-	}, 'sprites/candle/candle7b.png')
 
 	api_define_item({
 		id = 'candle7d',
@@ -341,8 +328,21 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 25,
-		shop_buy = 100
+		shop_buy = 50
 	}, 'sprites/candle/candle7d.png')
+
+	api_define_item({
+		id = 'candle7b',
+		name = 'Green Candle',
+		category = 'Resource',
+		tooltip = 'A candle infused with Honeybriar',
+		durability = 1000,
+		placeable = true,
+		singular = true,
+		shop_key = false,
+		shop_sell = 25,
+		shop_buy = 50
+	}, 'sprites/candle/candle7b.png')
 
 	api_define_item({
 		id = 'candle7a',
@@ -353,7 +353,7 @@ function define_candles_all()
 		shop_key = true,
 		singular = false,
 		shop_sell = 25,
-		shop_buy = 100
+		shop_buy = 50
 	}, 'sprites/candle/candle7a.png')
 
 	api_define_item({
@@ -370,19 +370,6 @@ function define_candles_all()
 	}, 'sprites/candle/candle8c.png')
 
 	api_define_item({
-		id = 'candle8b',
-		name = 'Hallowed Candle',
-		category = 'Resource',
-		tooltip = 'A candle infused with Hallowed Bees',
-		durability = 1000,
-		placeable = true,
-		singular = true,
-		shop_key = false,
-		shop_sell = 100,
-		shop_buy = 250
-	}, 'sprites/candle/candle8b.png')
-
-	api_define_item({
 		id = 'candle8d',
 		name = 'Hallowed Candle',
 		category = 'Resource',
@@ -394,6 +381,19 @@ function define_candles_all()
 		shop_sell = 100,
 		shop_buy = 250
 	}, 'sprites/candle/candle8d.png')
+
+	api_define_item({
+		id = 'candle8b',
+		name = 'Hallowed Candle',
+		category = 'Resource',
+		tooltip = 'A candle infused with Hallowed Bees',
+		durability = 1000,
+		placeable = true,
+		singular = true,
+		shop_key = false,
+		shop_sell = 100,
+		shop_buy = 250
+	}, 'sprites/candle/candle8b.png')
 
 	api_define_item({
 		id = 'candle8a',
@@ -421,19 +421,6 @@ function define_candles_all()
 	}, 'sprites/candle/candle9c.png')
 
 	api_define_item({
-		id = 'candle9b',
-		name = 'Icy Candle',
-		category = 'Resource',
-		tooltip = 'A candle infused with Icy Bees',
-		durability = 1000,
-		placeable = true,
-		singular = true,
-		shop_key = false,
-		shop_sell = 100,
-		shop_buy = 250
-	}, 'sprites/candle/candle9b.png')
-
-	api_define_item({
 		id = 'candle9d',
 		name = 'Icy Candle',
 		category = 'Resource',
@@ -445,6 +432,19 @@ function define_candles_all()
 		shop_sell = 100,
 		shop_buy = 250
 	}, 'sprites/candle/candle9d.png')
+
+	api_define_item({
+		id = 'candle9b',
+		name = 'Icy Candle',
+		category = 'Resource',
+		tooltip = 'A candle infused with Icy Bees',
+		durability = 1000,
+		placeable = true,
+		singular = true,
+		shop_key = false,
+		shop_sell = 100,
+		shop_buy = 250
+	}, 'sprites/candle/candle9b.png')
 
 	api_define_item({
 		id = 'candle9a',
@@ -468,21 +468,8 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 25,
-		shop_buy = 100
+		shop_buy = 50
 	}, 'sprites/candle/candle10c.png')
-
-	api_define_item({
-		id = 'candle10b',
-		name = 'Orange Candle',
-		category = 'Resource',
-		tooltip = 'A candle infused with Goldenrod',
-		durability = 1000,
-		placeable = true,
-		singular = true,
-		shop_key = false,
-		shop_sell = 25,
-		shop_buy = 100
-	}, 'sprites/candle/candle10b.png')
 
 	api_define_item({
 		id = 'candle10d',
@@ -494,8 +481,21 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 25,
-		shop_buy = 100
+		shop_buy = 50
 	}, 'sprites/candle/candle10d.png')
+
+	api_define_item({
+		id = 'candle10b',
+		name = 'Orange Candle',
+		category = 'Resource',
+		tooltip = 'A candle infused with Goldenrod',
+		durability = 1000,
+		placeable = true,
+		singular = true,
+		shop_key = false,
+		shop_sell = 25,
+		shop_buy = 50
+	}, 'sprites/candle/candle10b.png')
 
 	api_define_item({
 		id = 'candle10a',
@@ -506,7 +506,7 @@ function define_candles_all()
 		shop_key = true,
 		singular = false,
 		shop_sell = 25,
-		shop_buy = 100
+		shop_buy = 50
 	}, 'sprites/candle/candle10a.png')
 
 	api_define_item({
@@ -519,21 +519,8 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 50,
-		shop_buy = 200
+		shop_buy = 100
 	}, 'sprites/candle/candle11c.png')
-
-	api_define_item({
-		id = 'candle11b',
-		name = 'Pink Candle',
-		category = 'Resource',
-		tooltip = 'A candle infused with Beewell',
-		durability = 1000,
-		placeable = true,
-		singular = true,
-		shop_key = false,
-		shop_sell = 50,
-		shop_buy = 200
-	}, 'sprites/candle/candle11b.png')
 
 	api_define_item({
 		id = 'candle11d',
@@ -545,8 +532,21 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 50,
-		shop_buy = 200
+		shop_buy = 100
 	}, 'sprites/candle/candle11d.png')
+
+	api_define_item({
+		id = 'candle11b',
+		name = 'Pink Candle',
+		category = 'Resource',
+		tooltip = 'A candle infused with Beewell',
+		durability = 1000,
+		placeable = true,
+		singular = true,
+		shop_key = false,
+		shop_sell = 50,
+		shop_buy = 100
+	}, 'sprites/candle/candle11b.png')
 
 	api_define_item({
 		id = 'candle11a',
@@ -557,7 +557,7 @@ function define_candles_all()
 		shop_key = true,
 		singular = false,
 		shop_sell = 50,
-		shop_buy = 200
+		shop_buy = 100
 	}, 'sprites/candle/candle11a.png')
 
 	api_define_item({
@@ -570,21 +570,8 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 25,
-		shop_buy = 100
+		shop_buy = 50
 	}, 'sprites/candle/candle12c.png')
-
-	api_define_item({
-		id = 'candle12b',
-		name = 'Purple Candle',
-		category = 'Resource',
-		tooltip = 'A candle infused with Beesknees',
-		durability = 1000,
-		placeable = true,
-		singular = true,
-		shop_key = false,
-		shop_sell = 25,
-		shop_buy = 100
-	}, 'sprites/candle/candle12b.png')
 
 	api_define_item({
 		id = 'candle12d',
@@ -596,8 +583,21 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 25,
-		shop_buy = 100
+		shop_buy = 50
 	}, 'sprites/candle/candle12d.png')
+
+	api_define_item({
+		id = 'candle12b',
+		name = 'Purple Candle',
+		category = 'Resource',
+		tooltip = 'A candle infused with Beesknees',
+		durability = 1000,
+		placeable = true,
+		singular = true,
+		shop_key = false,
+		shop_sell = 25,
+		shop_buy = 50
+	}, 'sprites/candle/candle12b.png')
 
 	api_define_item({
 		id = 'candle12a',
@@ -608,7 +608,7 @@ function define_candles_all()
 		shop_key = true,
 		singular = false,
 		shop_sell = 25,
-		shop_buy = 100
+		shop_buy = 50
 	}, 'sprites/candle/candle12a.png')
 
 	api_define_item({
@@ -621,21 +621,8 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 10,
-		shop_buy = 0
+		shop_buy = 15
 	}, 'sprites/candle/candle13c.png')
-
-	api_define_item({
-		id = 'candle13b',
-		name = 'Red Candle',
-		category = 'Resource',
-		tooltip = 'A candle infused with Honeyrose',
-		durability = 1000,
-		placeable = true,
-		singular = true,
-		shop_key = false,
-		shop_sell = 10,
-		shop_buy = 0
-	}, 'sprites/candle/candle13b.png')
 
 	api_define_item({
 		id = 'candle13d',
@@ -647,8 +634,21 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 10,
-		shop_buy = 0
+		shop_buy = 15
 	}, 'sprites/candle/candle13d.png')
+
+	api_define_item({
+		id = 'candle13b',
+		name = 'Red Candle',
+		category = 'Resource',
+		tooltip = 'A candle infused with Honeyrose',
+		durability = 1000,
+		placeable = true,
+		singular = true,
+		shop_key = false,
+		shop_sell = 10,
+		shop_buy = 15
+	}, 'sprites/candle/candle13b.png')
 
 	api_define_item({
 		id = 'candle13a',
@@ -659,7 +659,7 @@ function define_candles_all()
 		shop_key = true,
 		singular = false,
 		shop_sell = 10,
-		shop_buy = 0
+		shop_buy = 15
 	}, 'sprites/candle/candle13a.png')
 
 	api_define_item({
@@ -676,19 +676,6 @@ function define_candles_all()
 	}, 'sprites/candle/candle14c.png')
 
 	api_define_item({
-		id = 'candle14b',
-		name = 'Shrouded Candle',
-		category = 'Resource',
-		tooltip = 'A candle infused with Shrouded Bees',
-		durability = 1000,
-		placeable = true,
-		singular = true,
-		shop_key = false,
-		shop_sell = 100,
-		shop_buy = 250
-	}, 'sprites/candle/candle14b.png')
-
-	api_define_item({
 		id = 'candle14d',
 		name = 'Shrouded Candle',
 		category = 'Resource',
@@ -700,6 +687,19 @@ function define_candles_all()
 		shop_sell = 100,
 		shop_buy = 250
 	}, 'sprites/candle/candle14d.png')
+
+	api_define_item({
+		id = 'candle14b',
+		name = 'Shrouded Candle',
+		category = 'Resource',
+		tooltip = 'A candle infused with Shrouded Bees',
+		durability = 1000,
+		placeable = true,
+		singular = true,
+		shop_key = false,
+		shop_sell = 100,
+		shop_buy = 250
+	}, 'sprites/candle/candle14b.png')
 
 	api_define_item({
 		id = 'candle14a',
@@ -727,19 +727,6 @@ function define_candles_all()
 	}, 'sprites/candle/candle15c.png')
 
 	api_define_item({
-		id = 'candle15b',
-		name = 'Sparkling Candle',
-		category = 'Resource',
-		tooltip = 'A candle infused with Sparkling Bees',
-		durability = 1000,
-		placeable = true,
-		singular = true,
-		shop_key = false,
-		shop_sell = 100,
-		shop_buy = 250
-	}, 'sprites/candle/candle15b.png')
-
-	api_define_item({
 		id = 'candle15d',
 		name = 'Sparkling Candle',
 		category = 'Resource',
@@ -751,6 +738,19 @@ function define_candles_all()
 		shop_sell = 100,
 		shop_buy = 250
 	}, 'sprites/candle/candle15d.png')
+
+	api_define_item({
+		id = 'candle15b',
+		name = 'Sparkling Candle',
+		category = 'Resource',
+		tooltip = 'A candle infused with Sparkling Bees',
+		durability = 1000,
+		placeable = true,
+		singular = true,
+		shop_key = false,
+		shop_sell = 100,
+		shop_buy = 250
+	}, 'sprites/candle/candle15b.png')
 
 	api_define_item({
 		id = 'candle15a',
@@ -774,21 +774,8 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 50,
-		shop_buy = 200
+		shop_buy = 100
 	}, 'sprites/candle/candle16c.png')
-
-	api_define_item({
-		id = 'candle16b',
-		name = 'Turquoise Candle',
-		category = 'Resource',
-		tooltip = 'A candle infused with Frosteria',
-		durability = 1000,
-		placeable = true,
-		singular = true,
-		shop_key = false,
-		shop_sell = 50,
-		shop_buy = 200
-	}, 'sprites/candle/candle16b.png')
 
 	api_define_item({
 		id = 'candle16d',
@@ -800,8 +787,21 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 50,
-		shop_buy = 200
+		shop_buy = 100
 	}, 'sprites/candle/candle16d.png')
+
+	api_define_item({
+		id = 'candle16b',
+		name = 'Turquoise Candle',
+		category = 'Resource',
+		tooltip = 'A candle infused with Frosteria',
+		durability = 1000,
+		placeable = true,
+		singular = true,
+		shop_key = false,
+		shop_sell = 50,
+		shop_buy = 100
+	}, 'sprites/candle/candle16b.png')
 
 	api_define_item({
 		id = 'candle16a',
@@ -812,7 +812,7 @@ function define_candles_all()
 		shop_key = true,
 		singular = false,
 		shop_sell = 50,
-		shop_buy = 200
+		shop_buy = 100
 	}, 'sprites/candle/candle16a.png')
 
 	api_define_item({
@@ -825,21 +825,8 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 25,
-		shop_buy = 100
+		shop_buy = 50
 	}, 'sprites/candle/candle17c.png')
-
-	api_define_item({
-		id = 'candle17b',
-		name = 'White Candle',
-		category = 'Resource',
-		tooltip = 'A candle infused with Pondshine',
-		durability = 1000,
-		placeable = true,
-		singular = true,
-		shop_key = false,
-		shop_sell = 25,
-		shop_buy = 100
-	}, 'sprites/candle/candle17b.png')
 
 	api_define_item({
 		id = 'candle17d',
@@ -851,8 +838,21 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 25,
-		shop_buy = 100
+		shop_buy = 50
 	}, 'sprites/candle/candle17d.png')
+
+	api_define_item({
+		id = 'candle17b',
+		name = 'White Candle',
+		category = 'Resource',
+		tooltip = 'A candle infused with Pondshine',
+		durability = 1000,
+		placeable = true,
+		singular = true,
+		shop_key = false,
+		shop_sell = 25,
+		shop_buy = 50
+	}, 'sprites/candle/candle17b.png')
 
 	api_define_item({
 		id = 'candle17a',
@@ -863,7 +863,7 @@ function define_candles_all()
 		shop_key = true,
 		singular = false,
 		shop_sell = 25,
-		shop_buy = 100
+		shop_buy = 50
 	}, 'sprites/candle/candle17a.png')
 
 	api_define_item({
@@ -876,21 +876,8 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 10,
-		shop_buy = 0
+		shop_buy = 15
 	}, 'sprites/candle/candle18c.png')
-
-	api_define_item({
-		id = 'candle18b',
-		name = 'Yellow Candle',
-		category = 'Resource',
-		tooltip = 'A candle infused with Swarmwort',
-		durability = 1000,
-		placeable = true,
-		singular = true,
-		shop_key = false,
-		shop_sell = 10,
-		shop_buy = 0
-	}, 'sprites/candle/candle18b.png')
 
 	api_define_item({
 		id = 'candle18d',
@@ -902,8 +889,21 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 10,
-		shop_buy = 0
+		shop_buy = 15
 	}, 'sprites/candle/candle18d.png')
+
+	api_define_item({
+		id = 'candle18b',
+		name = 'Yellow Candle',
+		category = 'Resource',
+		tooltip = 'A candle infused with Swarmwort',
+		durability = 1000,
+		placeable = true,
+		singular = true,
+		shop_key = false,
+		shop_sell = 10,
+		shop_buy = 15
+	}, 'sprites/candle/candle18b.png')
 
 	api_define_item({
 		id = 'candle18a',
@@ -914,7 +914,7 @@ function define_candles_all()
 		shop_key = true,
 		singular = false,
 		shop_sell = 10,
-		shop_buy = 0
+		shop_buy = 15
 	}, 'sprites/candle/candle18a.png')
 
 	api_define_item({
@@ -927,21 +927,8 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 50,
-		shop_buy = 200
+		shop_buy = 100
 	}, 'sprites/candle/candle19c.png')
-
-	api_define_item({
-		id = 'candle19b',
-		name = 'Lime Candle',
-		category = 'Resource',
-		tooltip = 'A candle infused with Hivanium',
-		durability = 1000,
-		placeable = true,
-		singular = true,
-		shop_key = false,
-		shop_sell = 50,
-		shop_buy = 200
-	}, 'sprites/candle/candle19b.png')
 
 	api_define_item({
 		id = 'candle19d',
@@ -953,8 +940,21 @@ function define_candles_all()
 		singular = true,
 		shop_key = false,
 		shop_sell = 50,
-		shop_buy = 200
+		shop_buy = 100
 	}, 'sprites/candle/candle19d.png')
+
+	api_define_item({
+		id = 'candle19b',
+		name = 'Lime Candle',
+		category = 'Resource',
+		tooltip = 'A candle infused with Hivanium',
+		durability = 1000,
+		placeable = true,
+		singular = true,
+		shop_key = false,
+		shop_sell = 50,
+		shop_buy = 100
+	}, 'sprites/candle/candle19b.png')
 
 	api_define_item({
 		id = 'candle19a',
@@ -965,7 +965,7 @@ function define_candles_all()
 		shop_key = true,
 		singular = false,
 		shop_sell = 50,
-		shop_buy = 200
+		shop_buy = 100
 	}, 'sprites/candle/candle19a.png')
 
 

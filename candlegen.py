@@ -1,20 +1,7 @@
-# {id : int,
-# name : string,
-# category : default,
-# tooltip : string,
-# shop_key : bool,
-# tier : {1,2,3,4} governs the buy/sell value
-# machines : workbench only for plain candles,
-# placeable : bool only for candles in holder,
-# singular : true for completed candles,
-# durability : int only for completed candles,
-# obj : for completed candles
-# } sprite file derived from id + {a,b,c,d}
-
 import json
 
 # Settings --------->
-prices = {0 : { "sell": 0, "buy": 0 }, 1 : { "sell": 10, "buy": 0 }, 2 : { "sell": 25, "buy": 100 }, 3 : { "sell": 50, "buy": 200 }, 4 : { "sell": 100, "buy": 250 }}
+prices = {0 : { "sell": 0.10, "buy": 0.50 }, 1 : { "sell": 10, "buy": 15 }, 2 : { "sell": 25, "buy": 50 }, 3 : { "sell": 50, "buy": 100 }, 4 : { "sell": 100, "buy": 250 }}
 defsfile = open("batchcandles.json")
 defs = json.load(defsfile)
 category = "Resource"
