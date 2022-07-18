@@ -11,9 +11,8 @@ end
 function register()
   return {
     name = MOD_NAME,
-    -- hooks = {"ready", "click", "worldgen"},
-    hooks = {"ready", "click"},
-    modules = {"candle", "dblboiler", "candlemaker", "commands", "npc", "candles_all"}
+    hooks = {"ready", "click", "draw"},
+    modules = {"candle", "dblboiler", "candlemaker", "commands", "npc", "candles_all", "define"}
   }
 end
 
@@ -25,7 +24,7 @@ function init()
 
   define_candles()
   define_machines()
-
+  -- define_recipe_book()
   return "Success"
 end
 
@@ -36,9 +35,11 @@ function ready()
     player = api_get_player_position()
     api_create_obj("npc878", player["x"] + 16, player["y"] - 32)
   end
-
+  -- create_recipe_book()
 end
 
+function draw()
+end
 
 function click()
   highlighted = api_get_highlighted("obj")

@@ -1,6 +1,6 @@
 api_define_npc({
   id = 878,
-  name = "InsertName",
+  name = "Phoebee",
   pronouns = "They/Them",
   tooltip = "Oh hey!",
   shop = true,
