@@ -189,9 +189,8 @@ function cm_tick(menu_id)
             outslot = api_get_slot(menu_id, slot + 4)
             api_sp(menu_id,"d" .. slot -2 .."_run", false)
             api_sp(menu_id, "d" .. slot-2 .."_start", 0)
-            -- inslot = api_get_slot(slot)
-            -- mold = api_get_inst(inslot["item"]["id"])
-            -- api_sp(mold["id"], "current_health", 1)
+            inslot = api_get_slot(slot)
+            api_sp(inslot["id"], "current_health", 1)
             if outslot["count"] > 0 then
               api_slot_incr(outslot["id"])
             else
