@@ -52,7 +52,7 @@ end
 function cm_define(menu_id)
   api_dp(menu_id, "working", false)
   api_dp(menu_id, "p_start", 0)
-  api_dp(menu_id, "p_end", 3)
+  api_dp(menu_id, "p_end", 4)
   api_dp(menu_id, "d1_start", 0)
   api_dp(menu_id, "d1_end", 2)
   api_dp(menu_id, "d2_start", 0)
@@ -61,9 +61,13 @@ function cm_define(menu_id)
   api_dp(menu_id, "d3_end", 2)
   api_dp(menu_id, "d4_start", 0)
   api_dp(menu_id, "d4_end", 2)
+  api_dp(menu_id, "d1_run", false)
+  api_dp(menu_id, "d2_run", false)
+  api_dp(menu_id, "d3_run", false)
+  api_dp(menu_id, "d4_run", false)
   api_dp(menu_id, "tank_amount", 0)
   api_dp(menu_id, "engaged", false)
-  api_dp(menu_id, "num_candles", 0)
+  api_dp(menu_id, "runs", 0)
 
   api_define_gui(menu_id, "cm_progress_bar", 26, 20, "cm_progress_tooltip", "sprites/machines/cnd_maker_gui_arrow.png")
   spr = api_get_sprite("sp_candles_cm_progress_bar")
@@ -86,8 +90,9 @@ function cm_define(menu_id)
   api_dp(menu_id, "cm_down_bar4_sprite", spr)
 
   fields = {
-    "p_start", "p_end", "d1_start", "d1_end", "working", "wicks_present",
-    "d2_start", "d2_end", "d3_start", "d3_end", "d4_start", "d4_end"
+    "p_start", "p_end", "d1_start", "d1_end", "working", "engaged",
+    "d2_start", "d2_end", "d3_start", "d3_end", "d4_start", "d4_end",
+    "d1_run", "d2_run", "d3_run", "d4_run", "runs"
   }
   fields = api_sp(menu_id, "_fields", fields)
  
@@ -169,7 +174,38 @@ end
 
 function cm_tick(menu_id)
   if api_gp(menu_id, "engaged") == true then
-    
+    if api_gp(menu_id, "p_start") < api_gp(menu_id, "p_end") then
+      api_sp(menu_id, "p_start",(api_gp(menu_id, "p_start") + (0.4 / api_gp(menu_id, "runs"))))
+    end
+    if api_gp(menu_id, "p_start") >= api_gp(menu_id, "p_end") then
+      api_sp(menu_id, "runs", 0)
+      for slot = 3,6 do
+        if api_get_slot(menu_id, slot)["total_health"] > 0 and api_gp(menu_id,"d" .. slot -2 .."_run") == true then
+        -- if api_get_slot(menu_id, slot)["count"] > 0 then  
+          if api_gp(menu_id, "d" .. slot-2 .."_start") < api_gp(menu_id, "d" .. slot-2 .. "_end") then
+            api_sp(menu_id, "d" .. slot-2 .."_start",(api_gp(menu_id, "d" .. slot-2 .."_start") + 0.1))
+          end
+          if api_gp(menu_id, "d" .. slot-2 .."_start") >= api_gp(menu_id, "d" .. slot-2 .. "_end") then
+            outslot = api_get_slot(menu_id, slot + 4)
+            api_sp(menu_id,"d" .. slot -2 .."_run", false)
+            api_sp(menu_id, "d" .. slot-2 .."_start", 0)
+            -- inslot = api_get_slot(slot)
+            -- mold = api_get_inst(inslot["item"]["id"])
+            -- api_sp(mold["id"], "current_health", 1)
+            if outslot["count"] > 0 then
+              api_slot_incr(outslot["id"])
+            else
+              api_slot_set(outslot["id"], "candles_candle1a", 1)
+            end
+          end
+        end
+      end
+      if api_gp(menu_id, "d1_run") == false and api_gp(menu_id, "d2_run") == false and api_gp(menu_id, "d3_run") == false and api_gp(menu_id, "d4_run") == false then
+        api_sp(menu_id, "p_start", 0)
+        api_sp(menu_id, "engaged", false)
+        api_create_log("candles", "disengaged")
+      end
+    end
   end
 end
 
@@ -177,7 +213,7 @@ function cm_progress_tooltip(menu_id)
   progress = math.floor((api_gp(menu_id, "p_start") / api_gp(menu_id, "p_end")) * 100)
   percent = tostring(progress) .. "%"
   return {
-    {"Cooling", "FONT_WHITE"},
+    {"Filling", "FONT_WHITE"},
     {percent, "FONT_BGREY"}
   }
 end
@@ -226,10 +262,18 @@ function cnd_engage_click(menu_id)
     wick_slot = api_get_slot(menu_id, 2)
     wick_nums = wick_slot["count"]
     wax_num = api_gp(menu_id, "tank_amount")
-    if slot_nums >= 1 and wick_nums >= 1 and wax_num >= WAX_PER_CANDLE then
-      num_candles = math.min(slot_nums, wick_nums, wax_num/WAX_PER_CANDLE)
+    if wick_nums >= slot_nums and slot_nums <= (wax_num/WAX_PER_CANDLE) then
+      num_candles = slot_nums
       api_sp(menu_id, "runs", num_candles)
+      api_slot_decr(wick_slot["id"], num_candles)
+      api_sp(menu_id, "tank_amount", api_gp(menu_id, "tank_amount") - (num_candles * WAX_PER_CANDLE))
       api_sp(menu_id, "engaged", true)
+    end
+    for slot = 1,4 do
+      rslot = api_get_slot(menu_id, slot + 2)
+      if rslot["total_health"] > 0 then
+        api_sp(menu_id, "d" .. slot .. "_run", true)
+      end
     end
   end
   

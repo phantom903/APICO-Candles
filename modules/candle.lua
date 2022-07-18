@@ -37,6 +37,7 @@ function define_candle_items()
     shop_buy = 10,
     shop_sell = 0,
     durability = 3
+    -- singular = true
   }, "sprites/candle/candle_mold1.png")
   api_define_recipe("t2", MOD_NAME .. "_cndmold1", {{ item = "planks1", amount = 5}, { item = "sticks1", amount = 2}}, 1)
 
@@ -49,6 +50,7 @@ function define_candle_items()
     shop_buy = 10,
     shop_sell = 0,
     durability = 5
+    -- singular = true
   }, "sprites/candle/candle_mold2.png")
   api_define_recipe("t2", MOD_NAME .. "_cndmold2", {{ item = "planks2", amount = 5}, { item = "sticks2", amount = 2}}, 1)
 
@@ -61,6 +63,7 @@ function define_candle_items()
     shop_buy = 100,
     shop_sell = 20,
     durability = 10,
+    -- singular = true,
     honeycore = true
   }, "sprites/candle/candle_mold3.png")
 end

@@ -140,7 +140,7 @@ function db_tick(menu_id)
   end
   if (api_gp(menu_id, "working") == true) and (api_gp(menu_id, "smoking") == true) then
     api_sp(menu_id, "p_start", api_gp(menu_id, "p_start") + 0.1)
-    api_sp(menu_id, "s_start", api_gp(menu_id, "s_start") - 0.1)
+    api_sp(menu_id, "s_start", api_gp(menu_id, "s_start") - 0.05)
     if api_gp(menu_id, "p_start") >= api_gp(menu_id, "p_end") then
       api_sp(menu_id, "p_start", 0)
       input_slot = api_slot_match_range(menu_id, {"ANY"}, {1,2,3,4}, true)
