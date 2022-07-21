@@ -12,7 +12,8 @@ function command_testkit(args)
     {id ="canister2", num = 1},
     {id = "sawdust2", num = 99},
     {id = "sawdust2", num = 99},
-    {id = "beeswax", num = 99}
+    {id = "beeswax", num = 99},
+    {id = "snowball", num = 99}
   }
   for _,v in pairs(testkit) do
     api_use_item(v["id"], api_use_total(v["id"]))

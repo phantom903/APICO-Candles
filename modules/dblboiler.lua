@@ -115,9 +115,7 @@ function db_tick(menu_id)
     if v["oid"] == "heater" and api_gp(v["menu_id"], "working") == true then
       machine_mod = DB_PROGRESS_INCR * DB_HEATER_BOOST
       smoke_mod = DB_SMOKE_USED / DB_HEATER_BOOST
-    else
-      machine_mod = DB_PROGRESS_INCR
-      smoke_mod = DB_SMOKE_USED
+      api_create_log("candles", "heat on")
     end
   end
   input_slot = api_slot_match_range(menu_id, {"ANY"}, {1,2,3,4}, true)
