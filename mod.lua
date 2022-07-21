@@ -18,9 +18,12 @@ end
 
 function init()
   
-  api_set_devmode(true)
-  api_log("init", "Candles loaded!")
-  api_define_command('/get_pos', "command_playerpos")
+  if CMOD_DEVMODE == true then
+    api_set_devmode(true)
+    api_log("init", "Candles loaded!")
+    api_define_command('/get_pos', "command_playerpos")
+    api_define_command('/testkit', "command_testkit")
+  end
 
   define_candles()
   define_machines()

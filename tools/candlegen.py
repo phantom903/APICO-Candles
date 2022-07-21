@@ -1,11 +1,18 @@
 import json
 
 # Settings --------->
-prices = {0 : { "sell": 0.10, "buy": 0.50 }, 1 : { "sell": 10, "buy": 15 }, 2 : { "sell": 25, "buy": 50 }, 3 : { "sell": 50, "buy": 100 }, 4 : { "sell": 100, "buy": 250 }}
+prices = { # Candle tier : sell / buy
+  0 : { "sell": 0.10, "buy": 0.50 },
+  1 : { "sell": 10, "buy": 15 },
+  2 : { "sell": 25, "buy": 50 },
+  3 : { "sell": 50, "buy": 100 },
+  4 : { "sell": 100, "buy": 250 }
+}
 defsfile = open("batchcandles.json")
 defs = json.load(defsfile)
 category = "Resource"
 
+# Code -------->
 variants = { 'a', 'b', 'c', 'd' }
 
 output = ['function define_candles_all()\n']
@@ -44,18 +51,7 @@ for i in defs.keys():
     outline += "\t}, \'sprites/candle/candle" + i + variant + ".png\')\n\n"
     output.append(outline)
 
-# for i in defs.keys():
-#   for variant in {'b', 'c', 'd'}:
-#     outline = "\tapi_define_object({\n\t\tid = \'candle"
-#     outline += i + variant + "\',\n"
-#     outline += "\t\tname = \'" + defs[i]['name'] + "\',\n"
-#     outline += "\t\tcategory = \'Decoration\',\n"
-#     outline += "\t\ttooltip = \'" + defs[i]['tooltip'] + " in a holder\',\n"
-#     outline += "\t\ttools = {\'hammerX\'}"
-#     outline += "\t}, \'sprites/candle/candle" + i + variant + ".png\')\n\n"
-#     output.append(outline)
-
 output.append("\nend")
 
-outfile = open("modules/candles_all.lua", "w")
+outfile = open("../modules/candles_all.lua", "w")
 outfile.writelines(output)

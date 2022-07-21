@@ -6,8 +6,8 @@ function define_candlemaker()
     name = "Candle Maker",
     category = "Crafting",
     tooltip = "Turns liquid candle wax into candles",
-    shop_buy = 30,
-    shop_sell = 15,
+    shop_buy = CNDMAKERBUY,
+    shop_sell = CNDMAKERSELL,
     layout = {
      {7, 63, "Liquid Input", {"canister1", "canister2"}},
      {30, 63, "Input", {MOD_NAME .. "_cndwick"}},
@@ -52,15 +52,15 @@ end
 function cm_define(menu_id)
   api_dp(menu_id, "working", false)
   api_dp(menu_id, "p_start", 0)
-  api_dp(menu_id, "p_end", 4)
+  api_dp(menu_id, "p_end", CM_PROGRESS_MAX)
   api_dp(menu_id, "d1_start", 0)
-  api_dp(menu_id, "d1_end", 2)
+  api_dp(menu_id, "d1_end", CM_DOWNARROW_MAX)
   api_dp(menu_id, "d2_start", 0)
-  api_dp(menu_id, "d2_end", 2)
+  api_dp(menu_id, "d2_end", CM_DOWNARROW_MAX)
   api_dp(menu_id, "d3_start", 0)
-  api_dp(menu_id, "d3_end", 2)
+  api_dp(menu_id, "d3_end", CM_DOWNARROW_MAX)
   api_dp(menu_id, "d4_start", 0)
-  api_dp(menu_id, "d4_end", 2)
+  api_dp(menu_id, "d4_end", CM_DOWNARROW_MAX)
   api_dp(menu_id, "d1_run", false)
   api_dp(menu_id, "d2_run", false)
   api_dp(menu_id, "d3_run", false)
@@ -96,7 +96,7 @@ function cm_define(menu_id)
   }
   fields = api_sp(menu_id, "_fields", fields)
  
-  api_define_tank(menu_id, 0, 3200, "Candlewax", 7, 14, "large")
+  api_define_tank(menu_id, 0, CM_WAX_CAPACITY, "Candlewax", 7, 14, "large")
   api_define_button(menu_id, "cnd_engage", 27, 34, "", "cnd_engage_click", "sprites/machines/cnd_mkr_btn.png")
 end
 
@@ -175,7 +175,7 @@ end
 function cm_tick(menu_id)
   if api_gp(menu_id, "engaged") == true then
     if api_gp(menu_id, "p_start") < api_gp(menu_id, "p_end") then
-      api_sp(menu_id, "p_start",(api_gp(menu_id, "p_start") + (0.4 / api_gp(menu_id, "runs"))))
+      api_sp(menu_id, "p_start",(api_gp(menu_id, "p_start") + (CM_PROGRESS_INCR / api_gp(menu_id, "runs"))))
     end
     if api_gp(menu_id, "p_start") >= api_gp(menu_id, "p_end") then
       api_sp(menu_id, "runs", 0)
@@ -183,14 +183,14 @@ function cm_tick(menu_id)
         if api_get_slot(menu_id, slot)["total_health"] > 0 and api_gp(menu_id,"d" .. slot -2 .."_run") == true then
         -- if api_get_slot(menu_id, slot)["count"] > 0 then  
           if api_gp(menu_id, "d" .. slot-2 .."_start") < api_gp(menu_id, "d" .. slot-2 .. "_end") then
-            api_sp(menu_id, "d" .. slot-2 .."_start",(api_gp(menu_id, "d" .. slot-2 .."_start") + 0.1))
+            api_sp(menu_id, "d" .. slot-2 .."_start",(api_gp(menu_id, "d" .. slot-2 .."_start") + CM_DOWNARROW_INCR))
           end
           if api_gp(menu_id, "d" .. slot-2 .."_start") >= api_gp(menu_id, "d" .. slot-2 .. "_end") then
             outslot = api_get_slot(menu_id, slot + 4)
             api_sp(menu_id,"d" .. slot -2 .."_run", false)
             api_sp(menu_id, "d" .. slot-2 .."_start", 0)
             inslot = api_get_slot(slot)
-            api_sp(inslot["id"], "current_health", 1)
+            -- api_sp(inslot["id"], "current_health", 1)
             if outslot["count"] > 0 then
               api_slot_incr(outslot["id"])
             else
@@ -261,11 +261,11 @@ function cnd_engage_click(menu_id)
     wick_slot = api_get_slot(menu_id, 2)
     wick_nums = wick_slot["count"]
     wax_num = api_gp(menu_id, "tank_amount")
-    if wick_nums >= slot_nums and slot_nums <= (wax_num/WAX_PER_CANDLE) then
+    if wick_nums >= slot_nums and slot_nums <= (wax_num/CM_WAX_PER_CANDLE) then
       num_candles = slot_nums
       api_sp(menu_id, "runs", num_candles)
       api_slot_decr(wick_slot["id"], num_candles)
-      api_sp(menu_id, "tank_amount", api_gp(menu_id, "tank_amount") - (num_candles * WAX_PER_CANDLE))
+      api_sp(menu_id, "tank_amount", api_gp(menu_id, "tank_amount") - (num_candles * CM_WAX_PER_CANDLE))
       api_sp(menu_id, "engaged", true)
     end
     for slot = 1,4 do

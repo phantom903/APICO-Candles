@@ -4,8 +4,8 @@ function define_dblboiler()
     name = "Double Boiler",
     category = "Crafting",
     tooltip = "Turns beeswax into liquid candle wax",
-    shop_buy = 30,
-    shop_sell = 15,
+    shop_buy = DBLBOILERBUY,
+    shop_sell = DBLBOILERSELL,
     layout = {
       {8, 17, "Input", {"beeswax"}},
       {8, 40, "Input", {"beeswax"}},
@@ -46,17 +46,17 @@ function db_define(menu_id)
   api_dp(menu_id, "smoking", false)
   
   api_dp(menu_id, "p_start", 0)
-  api_dp(menu_id, "p_end", 4)
+  api_dp(menu_id, "p_end", DB_PROGRESS_MAX)
   api_dp(menu_id, "tank_amount", 0)
 
   api_dp(menu_id, "s_start", 0)
-  api_dp(menu_id, "s_end", 50)
+  api_dp(menu_id, "s_end", DB_SMOKE_MAX)
 
   api_define_gui(menu_id, "db_progress_bar", 50, 21, "db_progress_tooltip", "sprites/machines/dblboil_gui_arrow.png")
   spr = api_get_sprite("sp_candles_db_progress_bar")
   api_dp(menu_id, "db_progress_bar_sprite", spr)
 
-  api_define_tank(menu_id,0,3200,"Candlewax", 123, 14, "large")
+  api_define_tank(menu_id,0, DB_WAX_CAPACITY, "Candlewax", 123, 14, "large")
 
   api_define_gui(menu_id, "dbl_boil_smoke", 72, 30, "db_smoke_tooltip", "sprites/machines/dbl_boiler_heat.png")
   spr2 = api_get_sprite("sp_candles_dbl_boil_smoke")
@@ -64,6 +64,7 @@ function db_define(menu_id)
 
   fields = {"p_start", "p_end", "tank_amount", "s_start", "s_end"}
   fields = api_sp(menu_id, "_fields", fields)
+
 end
 
 function db_draw(menu_id)
@@ -106,25 +107,38 @@ function db_change(menu_id)
 end
 
 function db_tick(menu_id)
+  machine_mod = DB_PROGRESS_INCR
+  smoke_mod = DB_SMOKE_USED
+  machine_pos = api_get_inst(menu_id)
+  local_objs = api_get_inst_in_circle("menu_obj", machine_pos["x"], machine_pos["y"], (6*16))
+  for _, v in pairs(local_objs) do
+    if v["oid"] == "heater" and api_gp(v["menu_id"], "working") == true then
+      machine_mod = DB_PROGRESS_INCR * DB_HEATER_BOOST
+      smoke_mod = DB_SMOKE_USED / DB_HEATER_BOOST
+    else
+      machine_mod = DB_PROGRESS_INCR
+      smoke_mod = DB_SMOKE_USED
+    end
+  end
   input_slot = api_slot_match_range(menu_id, {"ANY"}, {1,2,3,4}, true)
   smoke_slot = api_get_slot(menu_id, 5)
   smoke = api_gp(menu_id, "s_start")
 
   if smoke_slot["count"] > 0 and (api_gp(menu_id, "s_start") < (api_gp(menu_id, "s_end"))) then
     api_slot_decr(smoke_slot["id"])
-    if api_gp(menu_id, "s_start") > 48 then 
-      api_sp(menu_id, "s_start", 50)
+    if api_gp(menu_id, "s_start") >= (DB_SMOKE_MAX - DB_SMOKE_INCR) then
+      api_sp(menu_id, "s_start", DB_SMOKE_MAX)
     else
-      api_sp(menu_id, "s_start", api_gp(menu_id, "s_start") + 2)
+      api_sp(menu_id, "s_start", api_gp(menu_id, "s_start") + DB_SMOKE_INCR)
     end
-    if api_gp(menu_id, "s_start") > 50 then
-      api_sp(menu_id, "s_start", 50)
+    if api_gp(menu_id, "s_start") > DB_SMOKE_MAX then
+      api_sp(menu_id, "s_start", DB_SMOKE_MAX)
     end
   end
   wax = api_gp(menu_id, "tank_amount")
-  if wax >= 3200 then
+  if wax >= DB_WAX_CAPACITY then
     api_sp(menu_id, "working", false)
-    api_sp(menu_id, "tank_amount", 3200)
+    api_sp(menu_id, "tank_amount", DB_WAX_CAPACITY)
     api_sp(menu_id, "p_start", 0)
     api_sp(menu_id, "error", "")
   elseif input_slot ~= nil then
@@ -139,15 +153,15 @@ function db_tick(menu_id)
     api_sp(menu_id, "smoking", true)
   end
   if (api_gp(menu_id, "working") == true) and (api_gp(menu_id, "smoking") == true) then
-    api_sp(menu_id, "p_start", api_gp(menu_id, "p_start") + 0.1)
-    api_sp(menu_id, "s_start", api_gp(menu_id, "s_start") - 0.05)
+    api_sp(menu_id, "p_start", api_gp(menu_id, "p_start") + machine_mod)
+    api_sp(menu_id, "s_start", api_gp(menu_id, "s_start") - smoke_mod)
     if api_gp(menu_id, "p_start") >= api_gp(menu_id, "p_end") then
       api_sp(menu_id, "p_start", 0)
       input_slot = api_slot_match_range(menu_id, {"ANY"}, {1,2,3,4}, true)
       if input_slot ~= nil then
         api_slot_decr(input_slot["id"])
-        api_sp(menu_id, "tank_amount", api_gp(menu_id, "tank_amount") + 200)
-        api_sp(menu_id, "s_start", api_gp(menu_id, "s_start") - 1)
+        api_sp(menu_id, "tank_amount", api_gp(menu_id, "tank_amount") + DB_WAX_PER_BEESWAX)
+        -- api_sp(menu_id, "s_start", api_gp(menu_id, "s_start") - 1)
         input_slot = api_slot_match_range(menu_id, {"ANY"}, {1,2,3,4}, true)
         if input_slot == nil then api_sp(menu_id, "working", false) end
         if api_gp(menu_id, "s_start") <= 0 then
