@@ -53,35 +53,35 @@ function db_define(menu_id)
   api_dp(menu_id, "s_end", DB_SMOKE_MAX)
 
   api_define_gui(menu_id, "db_progress_bar", 50, 21, "db_progress_tooltip", "sprites/machines/dblboil_gui_arrow.png")
-  spr = api_get_sprite("sp_candles_db_progress_bar")
+  local spr = api_get_sprite("sp_candles_db_progress_bar")
   api_dp(menu_id, "db_progress_bar_sprite", spr)
 
   api_define_tank(menu_id,0, DB_WAX_CAPACITY, "Candlewax", 123, 14, "large")
 
   api_define_gui(menu_id, "dbl_boil_smoke", 72, 30, "db_smoke_tooltip", "sprites/machines/dbl_boiler_heat.png")
-  spr2 = api_get_sprite("sp_candles_dbl_boil_smoke")
+  local spr2 = api_get_sprite("sp_candles_dbl_boil_smoke")
   api_dp(menu_id, "smoke_sprite", spr2)
 
-  fields = {"p_start", "p_end", "tank_amount", "s_start", "s_end"}
+  local fields = {"p_start", "p_end", "tank_amount", "s_start", "s_end"}
   fields = api_sp(menu_id, "_fields", fields)
 
 end
 
 function db_draw(menu_id)
-  cam = api_get_cam()
-  gui = api_get_inst(api_gp(menu_id, "db_progress_bar"))
-  spr = api_gp(menu_id, "db_progress_bar_sprite")
+  local cam = api_get_cam()
+  local gui = api_get_inst(api_gp(menu_id, "db_progress_bar"))
+  local spr = api_gp(menu_id, "db_progress_bar_sprite")
 
-  gui2 = api_get_inst(api_gp(menu_id, "dbl_boil_smoke"))
-  spr2 = api_gp(menu_id, "smoke_sprite")
+  local gui2 = api_get_inst(api_gp(menu_id, "dbl_boil_smoke"))
+  local spr2 = api_gp(menu_id, "smoke_sprite")
 
-  gx = gui["x"] - cam["x"]
-  gy = gui["y"] - cam["y"]
-  g2x = gui2["x"] - cam["x"]
-  g2y = gui2["y"] - cam["y"]
+  local gx = gui["x"] - cam["x"]
+  local gy = gui["y"] - cam["y"]
+  local g2x = gui2["x"] - cam["x"]
+  local g2y = gui2["y"] - cam["y"]
   
-  progress = (api_gp(menu_id, "p_start") / api_gp(menu_id, "p_end") * 73)
-  smoke = (api_gp(menu_id, "s_start") / api_gp(menu_id, "s_end") * 41)
+  local progress = (api_gp(menu_id, "p_start") / api_gp(menu_id, "p_end") * 73)
+  local smoke = (api_gp(menu_id, "s_start") / api_gp(menu_id, "s_end") * 41)
 
   api_draw_sprite_part(spr, 2, 0, 0, progress, 10, gx, gy)
   api_draw_sprite(spr, 1, gx, gy)
@@ -99,7 +99,7 @@ function db_draw(menu_id)
 end
 
 function db_change(menu_id)
-  output_can = api_get_slot(menu_id, 6)
+  local output_can = api_get_slot(menu_id, 6)
   if output_can["item"] == "canister1" or output_can["item"] == "canister2" then
     api_slot_drain(menu_id, 6)
   end
@@ -107,10 +107,10 @@ function db_change(menu_id)
 end
 
 function db_tick(menu_id)
-  machine_mod = DB_PROGRESS_INCR
-  smoke_mod = DB_SMOKE_USED
-  machine_pos = api_get_inst(menu_id)
-  local_objs = api_get_inst_in_circle("menu_obj", machine_pos["x"], machine_pos["y"], (6*16))
+  local machine_mod = DB_PROGRESS_INCR
+  local smoke_mod = DB_SMOKE_USED
+  local machine_pos = api_get_inst(menu_id)
+  local local_objs = api_get_inst_in_circle("menu_obj", machine_pos["x"], machine_pos["y"], (6*16))
   for _, v in pairs(local_objs) do
     if v["oid"] == "heater" and api_gp(v["menu_id"], "working") == true then
       machine_mod = DB_PROGRESS_INCR * DB_HEATER_BOOST
@@ -118,9 +118,9 @@ function db_tick(menu_id)
       api_create_log("candles", "heat on")
     end
   end
-  input_slot = api_slot_match_range(menu_id, {"ANY"}, {1,2,3,4}, true)
-  smoke_slot = api_get_slot(menu_id, 5)
-  smoke = api_gp(menu_id, "s_start")
+  local input_slot = api_slot_match_range(menu_id, {"ANY"}, {1,2,3,4}, true)
+  local smoke_slot = api_get_slot(menu_id, 5)
+  local smoke = api_gp(menu_id, "s_start")
 
   if smoke_slot["count"] > 0 and (api_gp(menu_id, "s_start") < (api_gp(menu_id, "s_end"))) then
     api_slot_decr(smoke_slot["id"])
@@ -133,7 +133,7 @@ function db_tick(menu_id)
       api_sp(menu_id, "s_start", DB_SMOKE_MAX)
     end
   end
-  wax = api_gp(menu_id, "tank_amount")
+  local wax = api_gp(menu_id, "tank_amount")
   if wax >= DB_WAX_CAPACITY then
     api_sp(menu_id, "working", false)
     api_sp(menu_id, "tank_amount", DB_WAX_CAPACITY)
@@ -172,8 +172,8 @@ function db_tick(menu_id)
 end
 
 function db_progress_tooltip(menu_id)
-  progress = math.floor((api_gp(menu_id, "p_start") / api_gp(menu_id, "p_end")) * 100)
-  percent = tostring(progress) .. "%"
+  local progress = math.floor((api_gp(menu_id, "p_start") / api_gp(menu_id, "p_end")) * 100)
+  local percent = tostring(progress) .. "%"
   return {
     {"Progress", "FONT_WHITE"},
     {percent, "FONT_BGREY"}
@@ -181,8 +181,8 @@ function db_progress_tooltip(menu_id)
 end
 
 function db_smoke_tooltip(menu_id)
-  smoke = math.floor((api_gp(menu_id, "s_start") / api_gp(menu_id, "s_end")) * 100)
-  percent = tostring(smoke) .. "%"
+  local smoke = math.floor((api_gp(menu_id, "s_start") / api_gp(menu_id, "s_end")) * 100)
+  local percent = tostring(smoke) .. "%"
   return {
     {"Heat", "FONT_WHITE"},
     {percent, "FONT_BGREY"}

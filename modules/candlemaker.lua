@@ -1,4 +1,4 @@
-cnd_molds = {MOD_NAME .. "_cndmold1", MOD_NAME .. "_cndmold2", MOD_NAME .. "_cndmold3"}
+CND_MOLDS = {MOD_NAME .. "_cndmold1", MOD_NAME .. "_cndmold2", MOD_NAME .. "_cndmold3"}
 
 function define_candlemaker()
   api_define_menu_object({
@@ -11,10 +11,10 @@ function define_candlemaker()
     layout = {
      {7, 63, "Liquid Input", {"canister1", "canister2"}},
      {30, 63, "Input", {MOD_NAME .. "_cndwick"}},
-     {76, 17, "Input", cnd_molds},
-     {99, 17, "Input", cnd_molds},
-     {122, 17, "Input", cnd_molds},
-     {145, 17, "Input", cnd_molds},
+     {76, 17, "Input", CND_MOLDS},
+     {99, 17, "Input", CND_MOLDS},
+     {122, 17, "Input", CND_MOLDS},
+     {145, 17, "Input", CND_MOLDS},
      {76, 63, "Output"},
      {99, 63, "Output"},
      {122, 63, "Output"},
@@ -70,7 +70,7 @@ function cm_define(menu_id)
   api_dp(menu_id, "runs", 0)
 
   api_define_gui(menu_id, "cm_progress_bar", 26, 20, "cm_progress_tooltip", "sprites/machines/cnd_maker_gui_arrow.png")
-  spr = api_get_sprite("sp_candles_cm_progress_bar")
+  local spr = api_get_sprite("sp_candles_cm_progress_bar")
   api_dp(menu_id, "cm_progress_bar_sprite", spr)
   
   api_define_gui(menu_id, "cm_down_bar1", 79, 36, "cm_down1_tooltip", "sprites/machines/cnd_maker_down_gui_arrow.png")
@@ -89,7 +89,7 @@ function cm_define(menu_id)
   spr = api_get_sprite("sp_candles_cm_down_bar4")
   api_dp(menu_id, "cm_down_bar4_sprite", spr)
 
-  fields = {
+  local fields = {
     "p_start", "p_end", "d1_start", "d1_end", "working", "engaged",
     "d2_start", "d2_end", "d3_start", "d3_end", "d4_start", "d4_end",
     "d1_run", "d2_run", "d3_run", "d4_run", "runs"
@@ -101,12 +101,12 @@ function cm_define(menu_id)
 end
 
 function cm_draw(menu_id)
-  cam = api_get_cam()
-  gui = api_get_inst(api_gp(menu_id, "cm_progress_bar"))
-  spr = api_gp(menu_id, "cm_progress_bar_sprite")
-  gx = gui["x"] - cam["x"]
-  gy = gui["y"] - cam["y"]
-  progress = (api_gp(menu_id, "p_start") / api_gp(menu_id, "p_end") * 45)
+  local cam = api_get_cam()
+  local gui = api_get_inst(api_gp(menu_id, "cm_progress_bar"))
+  local spr = api_gp(menu_id, "cm_progress_bar_sprite")
+  local gx = gui["x"] - cam["x"]
+  local gy = gui["y"] - cam["y"]
+  local progress = (api_gp(menu_id, "p_start") / api_gp(menu_id, "p_end") * 45)
   api_draw_sprite_part(spr, 2, 0, 0, progress, 10, gx, gy)
   api_draw_sprite(spr, 1, gx, gy)
   if api_get_highlighted("ui") == gui["id"] then
@@ -166,16 +166,28 @@ function cm_draw(menu_id)
 end
 
 function cm_change(menu_id)
-  input_can = api_get_slot(menu_id, 1)
+  local input_can = api_get_slot(menu_id, 1)
   if input_can["item"] == "canister1" or input_can["item"] == "canister2" then
     api_slot_fill(menu_id, 1)
   end
 end
 
 function cm_tick(menu_id)
+  local machine_mod = CM_PROGRESS_INCR
+  local down_mod = CM_DOWNARROW_INCR
+  local machine_pos = api_get_inst(menu_id)
+  local local_objs = api_get_inst_in_circle("menu_obj", machine_pos["x"], machine_pos["y"], (6*16))
+  for _, v in pairs(local_objs) do
+    if v["oid"] == "cooler" and api_gp(v["menu_id"], "working") == true then
+      machine_mod = CM_PROGRESS_INCR * CM_COOLER_BOOST
+      down_mod = CM_DOWNARROW_INCR * CM_COOLER_BOOST
+      api_create_log("candles", "Cooler on")
+    end
+  end
+
   if api_gp(menu_id, "engaged") == true then
     if api_gp(menu_id, "p_start") < api_gp(menu_id, "p_end") then
-      api_sp(menu_id, "p_start",(api_gp(menu_id, "p_start") + (CM_PROGRESS_INCR / api_gp(menu_id, "runs"))))
+      api_sp(menu_id, "p_start",(api_gp(menu_id, "p_start") + (machine_mod / api_gp(menu_id, "runs"))))
     end
     if api_gp(menu_id, "p_start") >= api_gp(menu_id, "p_end") then
       api_sp(menu_id, "runs", 0)
@@ -183,13 +195,13 @@ function cm_tick(menu_id)
         if api_get_slot(menu_id, slot)["total_health"] > 0 and api_gp(menu_id,"d" .. slot -2 .."_run") == true then
         -- if api_get_slot(menu_id, slot)["count"] > 0 then  
           if api_gp(menu_id, "d" .. slot-2 .."_start") < api_gp(menu_id, "d" .. slot-2 .. "_end") then
-            api_sp(menu_id, "d" .. slot-2 .."_start",(api_gp(menu_id, "d" .. slot-2 .."_start") + CM_DOWNARROW_INCR))
+            api_sp(menu_id, "d" .. slot-2 .."_start",(api_gp(menu_id, "d" .. slot-2 .."_start") + down_mod))
           end
           if api_gp(menu_id, "d" .. slot-2 .."_start") >= api_gp(menu_id, "d" .. slot-2 .. "_end") then
-            outslot = api_get_slot(menu_id, slot + 4)
+            local outslot = api_get_slot(menu_id, slot + 4)
             api_sp(menu_id,"d" .. slot -2 .."_run", false)
             api_sp(menu_id, "d" .. slot-2 .."_start", 0)
-            inslot = api_get_slot(slot)
+            local inslot = api_get_slot(slot)
             -- api_sp(inslot["id"], "current_health", 1)
             if outslot["count"] > 0 then
               api_slot_incr(outslot["id"])
@@ -209,8 +221,8 @@ function cm_tick(menu_id)
 end
 
 function cm_progress_tooltip(menu_id)
-  progress = math.floor((api_gp(menu_id, "p_start") / api_gp(menu_id, "p_end")) * 100)
-  percent = tostring(progress) .. "%"
+  local progress = math.floor((api_gp(menu_id, "p_start") / api_gp(menu_id, "p_end")) * 100)
+  local percent = tostring(progress) .. "%"
   return {
     {"Filling", "FONT_WHITE"},
     {percent, "FONT_BGREY"}
@@ -218,8 +230,8 @@ function cm_progress_tooltip(menu_id)
 end
 
 function cm_down1_tooltip(menu_id)
-  progress = math.floor((api_gp(menu_id, "d1_start") / api_gp(menu_id, "d1_end")) * 100)
-  percent = tostring(progress) .. "%"
+  local progress = math.floor((api_gp(menu_id, "d1_start") / api_gp(menu_id, "d1_end")) * 100)
+  local percent = tostring(progress) .. "%"
   return {
     {"Setting", "FONT_WHITE"},
     {percent, "FONT_BGREY"}
@@ -227,8 +239,8 @@ function cm_down1_tooltip(menu_id)
 end
 
 function cm_down2_tooltip(menu_id)
-  progress = math.floor((api_gp(menu_id, "d2_start") / api_gp(menu_id, "d2_end")) * 100)
-  percent = tostring(progress) .. "%"
+  local progress = math.floor((api_gp(menu_id, "d2_start") / api_gp(menu_id, "d2_end")) * 100)
+  local percent = tostring(progress) .. "%"
   return {
     {"Setting", "FONT_WHITE"},
     {percent, "FONT_BGREY"}
@@ -236,8 +248,8 @@ function cm_down2_tooltip(menu_id)
 end
 
 function cm_down3_tooltip(menu_id)
-  progress = math.floor((api_gp(menu_id, "d3_start") / api_gp(menu_id, "d3_end")) * 100)
-  percent = tostring(progress) .. "%"
+  local progress = math.floor((api_gp(menu_id, "d3_start") / api_gp(menu_id, "d3_end")) * 100)
+  local percent = tostring(progress) .. "%"
   return {
     {"Setting", "FONT_WHITE"},
     {percent, "FONT_BGREY"}
@@ -245,8 +257,8 @@ function cm_down3_tooltip(menu_id)
 end
 
 function cm_down4_tooltip(menu_id)
-  progress = math.floor((api_gp(menu_id, "d4_start") / api_gp(menu_id, "d4_end")) * 100)
-  percent = tostring(progress) .. "%"
+  local progress = math.floor((api_gp(menu_id, "d4_start") / api_gp(menu_id, "d4_end")) * 100)
+  local percent = tostring(progress) .. "%"
   return {
     {"Setting", "FONT_WHITE"},
     {percent, "FONT_BGREY"}
@@ -254,13 +266,13 @@ function cm_down4_tooltip(menu_id)
 end
 
 function cnd_engage_click(menu_id)
-  num_candles = 0
+  local num_candles = 0
   if api_gp(menu_id, "engaged") == false then
-    filled_slots = api_slot_match_range( menu_id, cnd_molds, {3, 4, 5, 6}, false)
-    slot_nums = #filled_slots
-    wick_slot = api_get_slot(menu_id, 2)
-    wick_nums = wick_slot["count"]
-    wax_num = api_gp(menu_id, "tank_amount")
+    local filled_slots = api_slot_match_range( menu_id, CND_MOLDS, {3, 4, 5, 6}, false)
+    local slot_nums = #filled_slots
+    local wick_slot = api_get_slot(menu_id, 2)
+    local wick_nums = wick_slot["count"]
+    local wax_num = api_gp(menu_id, "tank_amount")
     if wick_nums >= slot_nums and slot_nums <= (wax_num/CM_WAX_PER_CANDLE) then
       num_candles = slot_nums
       api_sp(menu_id, "runs", num_candles)
@@ -269,7 +281,7 @@ function cnd_engage_click(menu_id)
       api_sp(menu_id, "engaged", true)
     end
     for slot = 1,4 do
-      rslot = api_get_slot(menu_id, slot + 2)
+      local rslot = api_get_slot(menu_id, slot + 2)
       if rslot["total_health"] > 0 then
         api_sp(menu_id, "d" .. slot .. "_run", true)
       end
