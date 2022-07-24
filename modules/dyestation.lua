@@ -7,7 +7,7 @@ function define_dyestation()
     shop_buy = 0,
     shop_sell = 0,
     layout = {
-      {7, 17, "Input", {"backpackX", "candles_candle1a"}},
+      {7, 17, "Input", {"backpack1", "candles_candle1a"}},
       {38, 17, "Input", {"dyeX"}}
     },
     buttons = {
@@ -38,13 +38,24 @@ function ds_define(menu_id)
 end
 
 function ds_draw(menu_id)
-  
+  api_define_button(menu_id, "cnd_dye_button", 4, 52, "cnd_dye_click", "sprite/dye_menu_btn.png")
 end
 
 function ds_change(menu_id)
-  
+  local input_slot = api_get_slot(menu_id, 1)
+  local old_stats = input_slot["stats"]
+  api_log("candles", old_stats)
+  old_stats["dye"] = 3
+  api_log("candles", old_stats)
+  api_slot_set(input_slot["id"], "backpack1", 1, old_stats)
+  -- api_slot_redraw(input_slot["id"])
 end
 
 function ds_tick(menu_id)
   
+end
+
+function cnd_dye_click(menu_id)
+  local item_input = api_get_slot(menu_id, 1)
+  local dye_input = api_get_slot(menu_id, 2)
 end
