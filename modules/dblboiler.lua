@@ -111,6 +111,7 @@ function db_tick(menu_id)
   local smoke_mod = DB_SMOKE_USED
   local machine_pos = api_get_inst(menu_id)
   local local_objs = api_get_inst_in_circle("menu_obj", machine_pos["x"], machine_pos["y"], (6*16))
+  -- api_create_log("candles", local_objs)
   for _, v in pairs(local_objs) do
     if v["oid"] == "heater" and api_gp(v["menu_id"], "working") == true then
       machine_mod = DB_PROGRESS_INCR * DB_HEATER_BOOST

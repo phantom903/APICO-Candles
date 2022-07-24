@@ -5,8 +5,8 @@ api_define_npc({
   tooltip = "Oh hey!",
   shop = true,
   walking = true,
-  stock = {"candles_cndwick", "candles_cndunlit1", "candles_fiber", "candles_double_boiler", "sawdust2"},
-  specials = {"log", "log", "log"},
+  stock = PHOEBEE_STOCK,
+  specials = PHOEBEE_SPECIAL,
   dialogue = {
     "Have you found the candle shrine yet?",
     "Keep making candles!"

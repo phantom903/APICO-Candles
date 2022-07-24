@@ -8,7 +8,7 @@ prices = { # Candle tier : sell / buy
   3 : { "sell": 50, "buy": 100 },
   4 : { "sell": 100, "buy": 250 }
 }
-defsfile = open("batchcandles.json")
+defsfile = open("tools/batchcandles.json")
 defs = json.load(defsfile)
 category = "Resource"
 
@@ -49,9 +49,14 @@ for i in defs.keys():
     outline += "\t\tshop_sell = " + str(prices[defs[i]['tier']]['sell']) + ",\n"
     outline += "\t\tshop_buy = " + str(prices[defs[i]['tier']]['buy']) + "\n"
     outline += "\t}, \'sprites/candle/candle" + i + variant + ".png\')\n\n"
+    if variant == "a":
+      outline += "\tapi_define_recipe(\'t3\', \'candles_candle" + i + "b\',{\n"
+      outline += "\t\t{ item = \'candles_candle" + i + "a\', amount = 1 },\n"
+      outline += "\t\t{ item = \'candles_cndholder\', amount = 1 },\n"
+      outline += "\t}, 1)\n\n"
     output.append(outline)
 
 output.append("\nend")
 
-outfile = open("../modules/candles_all.lua", "w")
+outfile = open("modules/candles_all.lua", "w")
 outfile.writelines(output)
