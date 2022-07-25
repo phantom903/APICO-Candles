@@ -25,7 +25,7 @@ CM_WAX_CAPACITY = 3200
 CM_WAX_PER_CANDLE = 100
 CM_COOLER_BOOST = 12
 
-PHOEBEE_STOCK = {"candles_cndwick", "candles_candle1a", "candles_fiber", "candles_double_boiler", "sawdust2"}
+PHOEBEE_STOCK = {"candles_cndwick", "candles_candle0a", "candles_fiber", "candles_double_boiler", "sawdust2"}
 PHOEBEE_SPECIAL = {"log", "log", "log"}
 
 CANDLES_LIGHTABLE = {}

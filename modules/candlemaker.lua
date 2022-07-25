@@ -206,7 +206,7 @@ function cm_tick(menu_id)
             if outslot["count"] > 0 then
               api_slot_incr(outslot["id"])
             else
-              api_slot_set(outslot["id"], "candles_candle1a", 1)
+              api_slot_set(outslot["id"], "candles_candle0a", 1)
             end
           end
         end
