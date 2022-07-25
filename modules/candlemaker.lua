@@ -170,6 +170,8 @@ function cm_change(menu_id)
   if input_can["item"] == "canister1" or input_can["item"] == "canister2" then
     api_slot_fill(menu_id, 1)
   end
+  local inslot = api_slot_match_range(menu_id, {"ANY"}, {3,4,5,6}, true)
+  api_log(inslot)
 end
 
 function cm_tick(menu_id)

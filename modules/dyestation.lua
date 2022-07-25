@@ -51,14 +51,18 @@ end
 
 function cnd_dye_click(menu_id)
   local item_input = api_get_slot(menu_id, 1)
-  api_log("candles", item_input)
   local dye_input = api_get_slot(menu_id, 2)
-  api_log("candles", dye_input)
   if item_input["item"] == "backpack1" and dye_input["count"] > 0 then
-    api_log("candles", "dying")
     local old_stats = item_input["stats"]
     old_stats["dye"] = tonumber(string.sub(dye_input["item"], 4))
     api_slot_set(item_input["id"], "backpack1", 1, old_stats)
-    api_slot_decr(dye_input)
+    api_slot_decr(dye_input["id"])
+    api_draw_slots(menu_id)
+  elseif string.sub(item_input["item"],1, 10) == "candles_ca" then
+    local player = api_get_player_position()
+    api_create_item("candles_candle" .. string.sub(dye_input["item"], 4) .. "a", 1, player["x"], player["y"])
+    api_slot_decr(item_input["id"])
+    api_slot_decr(dye_input["id"])
+    api_draw_slots(menu_id)
   end
 end

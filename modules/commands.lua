@@ -15,7 +15,8 @@ function command_testkit(args)
     {id = "beeswax", num = 99},
     {id = "snowball", num = 99},
     {id = "candles_cndwick", num = 99},
-    {id = "backpack1", num = 1}
+    {id = "backpack1", num = 1},
+    {id = "candles_candle_dyestation", num = 1}
   }
   for _,v in pairs(testkit) do
     api_use_item(v["id"], api_use_total(v["id"]))
@@ -29,7 +30,7 @@ function command_candles(args)
   local cndcrate = api_get_menu_objects(nil, "crate2")
   local slots = api_get_slots(cndcrate[1]["menu_id"])
   for i = 1,19 do
-    api_slot_set(slots[i]["id"], "candles_candle" .. i .. "a", 99)
+    api_slot_set(slots[i]["id"], "candles_candle" .. i-1 .. "a", 99)
   end
 end
 
