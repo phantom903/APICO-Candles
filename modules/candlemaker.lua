@@ -1,5 +1,3 @@
-CND_MOLDS = {MOD_NAME .. "_cndmold1", MOD_NAME .. "_cndmold2", MOD_NAME .. "_cndmold3"}
-
 function define_candlemaker()
   api_define_menu_object({
     id = "candle_maker",
@@ -170,20 +168,19 @@ function cm_change(menu_id)
   if input_can["item"] == "canister1" or input_can["item"] == "canister2" then
     api_slot_fill(menu_id, 1)
   end
-  local inslot = api_slot_match_range(menu_id, {"ANY"}, {3,4,5,6}, true)
-  api_log(inslot)
+  -- local inslot = api_slot_match_range(menu_id, {"ANY"}, {3,4,5,6}, true)
+  -- api_log(inslot)
 end
 
 function cm_tick(menu_id)
   local machine_mod = CM_PROGRESS_INCR
   local down_mod = CM_DOWNARROW_INCR
-  local machine_pos = api_get_inst(menu_id)
-  local local_objs = api_get_inst_in_circle("menu_obj", machine_pos["x"], machine_pos["y"], (6*16))
+  local local_objs = api_get_inst_in_circle("menu_obj", api_gp(menu_id, "obj_x"), api_gp(menu_id, "obj_y"), (6*16))
   for _, v in pairs(local_objs) do
     if v["oid"] == "cooler" and api_gp(v["menu_id"], "working") == true then
       machine_mod = CM_PROGRESS_INCR * CM_COOLER_BOOST
       down_mod = CM_DOWNARROW_INCR * CM_COOLER_BOOST
-      api_create_log("candles", "Cooler on")
+      -- api_create_log("candles", "Cooler on")
     end
   end
 
@@ -203,12 +200,15 @@ function cm_tick(menu_id)
             local outslot = api_get_slot(menu_id, slot + 4)
             api_sp(menu_id,"d" .. slot -2 .."_run", false)
             api_sp(menu_id, "d" .. slot-2 .."_start", 0)
-            local inslot = api_get_slot(slot)
-            -- api_sp(inslot["id"], "current_health", 1)
+            local inslot = api_get_slot(menu_id, slot)
+            api_sp(inslot["id"], "current_health", api_gp(inslot["id"], "current_health") - 1)
+            if api_gp(inslot["id"], "current_health") <= 0  then
+              api_slot_clear(inslot["id"])
+            end
             if outslot["count"] > 0 then
               api_slot_incr(outslot["id"])
             else
-              api_slot_set(outslot["id"], "candles_candle0a", 1)
+              api_slot_set(outslot["id"], "candles_candle19a", 1)
             end
           end
         end

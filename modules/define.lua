@@ -23,11 +23,12 @@ CM_PROGRESS_INCR = 0.04 --Must be divisible by 4!
 CM_DOWNARROW_INCR = 0.02
 CM_WAX_CAPACITY = 3200
 CM_WAX_PER_CANDLE = 100
-CM_COOLER_BOOST = 12
+CM_COOLER_BOOST = 10
+CND_MOLDS = {MOD_NAME .. "_cndmold1", MOD_NAME .. "_cndmold2", MOD_NAME .. "_cndmold3"}
 
-PHOEBEE_STOCK = {"candles_cndwick", "candles_candle0a", "candles_fiber", "candles_double_boiler", "sawdust2"}
+PHOEBEE_STOCK = {"candles_cndwick", "candles_candle19a", "candles_fiber", "candles_double_boiler", "sawdust2"}
 PHOEBEE_SPECIAL = {"log", "log", "log"}
 
-CANDLES_LIGHTABLE = {}
-CANDLES_UNLIGHTABLE = {}
+-- CANDLES_LIGHTABLE = {}
+-- CANDLES_UNLIGHTABLE = {}
 NUM_CANDLES = 19

@@ -12,7 +12,7 @@ end
 function register()
   return {
     name = MOD_NAME,
-    hooks = {"ready", "click", "draw"},
+    hooks = {"ready", "click"},
     modules = {"candle", "dblboiler", "candlemaker", "commands", "npc", "candles_all", "define", "dyestation"}
   }
 end
@@ -58,7 +58,8 @@ function click(button, click_type)
         if chance <= 3 then
           api_create_item("candles_fiber", 1, inst["x"], inst["y"])
         end
-      else
+      elseif string.sub(inst["oid"], 1, 10) == "candles_ca" then
+        api_log("candles", inst)
         for i = 1, NUM_CANDLES do
           if inst["oid"] == "candles_candle" .. i .. "b" or inst["oid"] == "candles_candle" .. i .. "d" then
             api_create_obj("candles_candle" .. i .. "c", inst["x"], inst["y"])
@@ -74,6 +75,9 @@ function click(button, click_type)
         --     api_destroy_inst(inst["id"])
         --   end
         -- end
+      else
+        -- api_log("candles", api_gp(inst["id"], "stats"))
+        api_log("candles", api_get_inst(inst["id"]))
       end
     end
   end

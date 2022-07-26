@@ -1,13 +1,13 @@
 function define_dyestation()
   api_define_menu_object({
-    id = "candle_dyestation",
+    id = "cnd_dyestation",
     name = "Dye Station",
     category = "crafting",
     tooltip = "A normal Dye Station.....now with candles!",
     shop_buy = 0,
     shop_sell = 0,
     layout = {
-      {7, 17, "Input", {"backpack1", "candles_candle0a"}},
+      {7, 17, "Input", {"backpack1", "candles_candle19a"}},
       {38, 17, "Input", {"dyeX"}}
     },
     buttons = {
@@ -34,15 +34,24 @@ function define_dyestation()
 end
 
 function ds_define(menu_id)
-  api_define_button(menu_id, "cnd_dye_button", 4, 52, "", "cnd_dye_click", "sprites/machines/dye_menu_btn.png")
+  api_define_button(menu_id, "cnd_dye_button_act", 4, 52, "", "cnd_dye_click", "sprites/machines/dye_menu_btnact.png")
+  -- api_define_button(menu_id, "cnd_dye_button_inact", 4, 52, "", "cnd_inact_click", "sprites/machines/dye_menu_btn.png")
 end
 
 function ds_draw(menu_id)
-  api_draw_button(api_gp(menu_id, "cnd_dye_button"), false)
+  api_draw_button(api_gp(menu_id, "cnd_dye_button_act"), false)
 end
 
 function ds_change(menu_id)
-
+  -- slots = api_get_slots(menu_id)
+  -- if slots[1] ~= nil and slots[2] ~= nil then
+  --   api_define_button(menu_id, "cnd_dye_button_act", 4, 52, "", "cnd_dye_click", "sprites/machines/dye_menu_btnact.png")
+  --   api_draw_button(api_gp(menu_id, "cnd_dye_button_act"), false)
+  -- else
+  --   if api_gp(menu_id, "cnd_dye_button_act") ~= nil then
+  --     api_remove_gui(menu_id, "cnd_dye_button_act")
+  --   end
+  -- end
 end
 
 function ds_tick(menu_id)
@@ -65,4 +74,8 @@ function cnd_dye_click(menu_id)
     api_slot_decr(dye_input["id"])
     api_draw_slots(menu_id)
   end
+end
+
+function cnd_inact_click(menu_id)
+  
 end

@@ -1,6 +1,6 @@
 function define_candles_all()
 	api_define_item({
-		id = 'candle0a',
+		id = 'candle19a',
 		name = 'Basic Candle',
 		category = 'Resource',
 		tooltip = 'A basic, undyed candle',
@@ -8,15 +8,15 @@ function define_candles_all()
 		singular = false,
 		shop_sell = 0.1,
 		shop_buy = 0.5
-	}, 'sprites/candle/candle0a.png')
+	}, 'sprites/candle/candle19a.png')
 
-	api_define_recipe('t3', 'candles_candle0b',{
-		{ item = 'candles_candle0a', amount = 1 },
+	api_define_recipe('t3', 'candles_candle19b',{
+		{ item = 'candles_candle19a', amount = 1 },
 		{ item = 'candles_cndholder', amount = 1 },
 	}, 1)
 
 	api_define_object({
-		id = 'candle0c',
+		id = 'candle19c',
 		name = 'Basic Candle',
 		category = 'Resource',
 		durability = 1000,
@@ -28,10 +28,10 @@ function define_candles_all()
 		tooltip = 'A basic, undyed candle in a holder',
 		shop_sell = 0.1,
 		shop_buy = 0.5
-	}, 'sprites/candle/candle0c.png')
+	}, 'sprites/candle/candle19c.png')
 
 	api_define_object({
-		id = 'candle0b',
+		id = 'candle19b',
 		name = 'Basic Candle',
 		category = 'Resource',
 		machines = {'workbench'},
@@ -42,10 +42,10 @@ function define_candles_all()
 		tooltip = 'A basic, undyed candle in a holder',
 		shop_sell = 0.1,
 		shop_buy = 0.5
-	}, 'sprites/candle/candle0b.png')
+	}, 'sprites/candle/candle19b.png')
 
 	api_define_object({
-		id = 'candle0d',
+		id = 'candle19d',
 		name = 'Basic Candle',
 		category = 'Resource',
 		durability = 1000,
@@ -55,7 +55,7 @@ function define_candles_all()
 		tooltip = 'A basic, undyed candle in a holder',
 		shop_sell = 0.1,
 		shop_buy = 0.5
-	}, 'sprites/candle/candle0d.png')
+	}, 'sprites/candle/candle19d.png')
 
 	api_define_item({
 		id = 'candle7a',

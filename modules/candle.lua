@@ -91,18 +91,18 @@ function define_candle_items()
   })
 end
 
-function build_candle_list()
-  for i = 1, NUM_CANDLES do
-    table.insert(CANDLES_LIGHTABLE, "candles_candle" .. i .. "b")
-    table.insert(CANDLES_LIGHTABLE, "candles_candle" .. i .. "d")
-    table.insert(CANDLES_UNLIGHTABLE, "candles_candle" .. i .. "c")
-  end
-end
+-- function build_candle_list()
+--   for i = 1, NUM_CANDLES do
+--     table.insert(CANDLES_LIGHTABLE, "candles_candle" .. i .. "b")
+--     table.insert(CANDLES_LIGHTABLE, "candles_candle" .. i .. "d")
+--     table.insert(CANDLES_UNLIGHTABLE, "candles_candle" .. i .. "c")
+--   end
+-- end
 
 function define_candles()
   define_candle_items()
   define_candles_all()
-  build_candle_list()
+  -- build_candle_list()
   api_define_workbench("Candles Mod", {
     t1 = "Basic Resources",
     t2 = "Candle Parts",
