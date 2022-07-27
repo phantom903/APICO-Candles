@@ -63,7 +63,7 @@ function db_define(menu_id)
   api_dp(menu_id, "smoke_sprite", spr2)
 
   local fields = {"p_start", "p_end", "tank_amount", "s_start", "s_end"}
-  fields = api_sp(menu_id, "_fields", fields)
+  api_sp(menu_id, "_fields", fields)
 
 end
 

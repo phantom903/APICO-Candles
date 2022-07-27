@@ -1,6 +1,6 @@
 function command_playerpos(args)
   local playerpos = api_get_player_position()
-  api_log("position: " .. playerpos["x"] .. ", " .. playerpos["y"])
+  api_log("candles", "position: " .. playerpos["x"] .. ", " .. playerpos["y"])
 end
 
 function command_testkit(args)

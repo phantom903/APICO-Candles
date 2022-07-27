@@ -9,14 +9,14 @@ function create_recipe_book()
 end
 
 function open_candles_book()
-  api_toggle_menu(CB_MENU, true)
+  api_toggle_menu(CB_MENU, 'open')
 end
 
 function prep_recipe_book()
   CB_CURSOR_SPR = api_define_sprite("cb_cursor", "sprites/unverified/recipe_book_cursor.png", 2)
   CB_SLOT_SPR = api_define_sprite("cb_slot", "sprites/unverified/rb_slot.png", 2)
   CB_CRAFT_ARROW = api_define_sprite("cb_craft_arrow", "sprites/unverified/rb_craft_arrow.png", 1)
-  CB_ITEM_UNDERLINE = api_define_spritC("cb_item_underline", "sprites/unverCfied/rb_item_underline.png", 1)
+  CB_ITEM_UNDERLINE = api_define_sprite("cb_item_underline", "sprites/unverCfied/rb_item_underline.png", 1)
 end
 
 function define_recipe_book()

@@ -53,12 +53,14 @@ function click(button, click_type)
     local highlighted = api_get_highlighted("obj")
     if highlighted ~= nil then
       local inst = api_get_inst(highlighted)
-      if inst["oid"] == "shrub" then
+      if inst ~= nil and inst["oid"] == "shrub" then
         local chance = math.random(1, 10)
         if chance <= 3 then
+---@diagnostic disable-next-line: missing-parameter
           api_create_item("candles_fiber", 1, inst["x"], inst["y"])
         end
-      elseif string.sub(inst["oid"], 1, 10) == "candles_ca" then
+      elseif inst ~= nil and string.sub(inst["oid"], 1, 10) == "candles_ca" then
+---@diagnostic disable-next-line: param-type-mismatch
         api_log("candles", inst)
         for i = 1, NUM_CANDLES do
           if inst["oid"] == "candles_candle" .. i .. "b" or inst["oid"] == "candles_candle" .. i .. "d" then
@@ -75,8 +77,9 @@ function click(button, click_type)
         --     api_destroy_inst(inst["id"])
         --   end
         -- end
-      else
+      elseif inst ~= nil then
         -- api_log("candles", api_gp(inst["id"], "stats"))
+---@diagnostic disable-next-line: param-type-mismatch
         api_log("candles", api_get_inst(inst["id"]))
       end
     end

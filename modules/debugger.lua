@@ -24,6 +24,13 @@ function define_debugger()
       "hammer2"
     },
     placeable = true
-  }, "sprites/debug/debugger_obj.png", "sprites/debug/debug_menu.png")
+  }, "sprites/debug/debugger_obj.png", "sprites/debug/debug_menu.png",
+  {
+    draw = "dbg_draw"
+  })
 
+end
+
+function dbg_draw(menu_id)
+  
 end

@@ -92,7 +92,7 @@ function cm_define(menu_id)
     "d2_start", "d2_end", "d3_start", "d3_end", "d4_start", "d4_end",
     "d1_run", "d2_run", "d3_run", "d4_run", "runs"
   }
-  fields = api_sp(menu_id, "_fields", fields)
+  api_sp(menu_id, "_fields", fields)
  
   api_define_tank(menu_id, 0, CM_WAX_CAPACITY, "Candlewax", 7, 14, "large")
   api_define_button(menu_id, "cnd_engage", 27, 34, "", "cnd_engage_click", "sprites/machines/cnd_mkr_btn.png")
@@ -206,7 +206,7 @@ function cm_tick(menu_id)
               api_slot_clear(inslot["id"])
             end
             if outslot["count"] > 0 then
-              api_slot_incr(outslot["id"])
+              api_slot_incr(outslot["id"], 1)
             else
               api_slot_set(outslot["id"], "candles_candle19a", 1)
             end
