@@ -48,6 +48,13 @@ end
 function draw()
 end
 
+-- function create(id, x, y, oid, inst_type)
+--   if oid == "dyestation" then
+--     api_destroy_inst(id)
+--     api_give_item("candles_cnd_dyestation", 1)
+--   end
+-- end
+
 function click(button, click_type)
   if click_type == "PRESSED"then
     local highlighted = api_get_highlighted("obj")

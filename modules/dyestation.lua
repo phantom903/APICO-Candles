@@ -1,7 +1,7 @@
 function define_dyestation()
   api_define_menu_object({
     id = "cnd_dyestation",
-    name = "Dye Station",
+    name = "Candle and Bag Dye Station",
     category = "crafting",
     tooltip = "A normal Dye Station.....now with candles!",
     shop_buy = 0,
@@ -30,6 +30,10 @@ function define_dyestation()
     draw = "ds_draw",
     change = "ds_change",
     tick = "ds_tick"
+  })
+
+  api_define_recipe("t3", MOD_NAME .. "_cnd_dyestation", {
+    { item = "dyestation", amount = 1 }
   })
 end
 
