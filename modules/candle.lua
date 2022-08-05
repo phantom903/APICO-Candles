@@ -35,6 +35,7 @@ function define_candle_items()
     shop_key = false,
     shop_buy = 10,
     shop_sell = 0,
+---@diagnostic disable-next-line: assign-type-mismatch
     durability = 3
     -- singular = true
   }, "sprites/candle/candle_mold1.png")
@@ -47,6 +48,7 @@ function define_candle_items()
     shop_key = false,
     shop_buy = 10,
     shop_sell = 0,
+---@diagnostic disable-next-line: assign-type-mismatch
     durability = 5
     -- singular = true
   }, "sprites/candle/candle_mold2.png")
@@ -59,6 +61,7 @@ function define_candle_items()
     shop_key = false,
     shop_buy = 100,
     shop_sell = 20,
+---@diagnostic disable-next-line: assign-type-mismatch
     durability = 10,
     -- singular = true,
     honeycore = true
@@ -88,6 +91,10 @@ function define_candle_items()
   api_define_recipe("t2", MOD_NAME .. "_cndholder", {
     { item = "log", amount = 1 },
     { item = "honeycomb", amount = 2}
+  })
+  api_define_recipe("t3", MOD_NAME .. "_candle19b", {
+    { item = MOD_NAME .. "_candle19a", amount = 1 },
+    { item = MOD_NAME .. "_cndholder", amount = 1 }
   })
 end
 

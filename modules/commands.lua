@@ -38,5 +38,6 @@ function command_getstats(args)
   local player = api_get_player_position()
   local obj_to_find = args[1]
   local objs = api_get_objects(nil, obj_to_find)
+---@diagnostic disable-next-line: param-type-mismatch
   api_create_log("candles", objs[1])
 end

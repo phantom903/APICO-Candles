@@ -29,31 +29,31 @@ for i in defs.keys():
     if variant != 'a':
       if variant == 'b':
         outline += "\t\tmachines = {\'workbench\'},\n"
-      outline += "\t\tdurability = 1000,\n"
+      # outline += "\t\tdurability = 1000,\n"
       # outline += "\t\tplaceable = true,\n"
       # outline += "\t\tobj = \'candles_candle" + i + variant + "\',\n"
       outline += "\t\ttools = { \'hammer1\'},\n"
       # outline += "\t\tpickable = true,\n"
       outline += "\t\tsingular = true,\n"
-      outline += "\t\tshop_key = false,\n"
+      # outline += "\t\tshop_key = false,\n"
       if variant == 'c':
         outline += "\t\thas_lighting = true,\n"
         outline += "\t\thas_shadow = true,\n"
       outline += "\t\ttooltip = \'" + defs[i]['tooltip'] + " in a holder\',\n"
     else:
-      if i == "1":
+      if i == "19":
         outline += "\t\tmachines = {\'candles_candle_maker\'},\n"
       outline += "\t\ttooltip = \'" + defs[i]['tooltip'] + "\',\n"
-      outline += "\t\tshop_key = true,\n"
-      outline += "\t\tsingular = false,\n"
+      # outline += "\t\tshop_key = true,\n"
+      # outline += "\t\tsingular = false,\n"
     outline += "\t\tshop_sell = " + str(prices[defs[i]['tier']]['sell']) + ",\n"
     outline += "\t\tshop_buy = " + str(prices[defs[i]['tier']]['buy']) + "\n"
     outline += "\t}, \'sprites/candle/candle" + i + variant + ".png\')\n\n"
-    if variant == "a":
-      outline += "\tapi_define_recipe(\'t3\', \'candles_candle" + i + "b\',{\n"
-      outline += "\t\t{ item = \'candles_candle" + i + "a\', amount = 1 },\n"
-      outline += "\t\t{ item = \'candles_cndholder\', amount = 1 },\n"
-      outline += "\t}, 1)\n\n"
+    # if variant == "a":
+    #   outline += "\tapi_define_recipe(\'t3\', \'candles_candle" + i + "b\',{\n"
+    #   outline += "\t\t{ item = \'candles_candle" + i + "a\', amount = 1 },\n"
+    #   outline += "\t\t{ item = \'candles_cndholder\', amount = 1 },\n"
+    #   outline += "\t}, 1)\n\n"
     output.append(outline)
 
 output.append("\nend")

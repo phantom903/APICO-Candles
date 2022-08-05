@@ -13,7 +13,7 @@ function register()
   return {
     name = MOD_NAME,
     hooks = {"ready", "click"},
-    modules = {"candle", "dblboiler", "candlemaker", "commands", "npc", "candles_all", "define", "dyestation"}
+    modules = {"candle", "dblboiler", "candlemaker", "commands", "npc", "candles_all", "define", "dyestation", "quests"}
   }
 end
 
@@ -30,19 +30,14 @@ function init()
 
   define_candles()
   define_machines()
+  define_quests()
+  define_phoebee()
   -- define_recipe_book()
   return "Success"
 end
 
 function ready()
-
-  local friend = api_get_menu_objects(nil, "npc878")
-  local friendinv = api_use_total("npc878")
-  if #friend == 0 and friendinv == 0 then
-    local player = api_get_player_position()
-    api_create_obj("npc878", player["x"] + 16, player["y"] - 32)
-  end
-  -- create_recipe_book()
+  api_unlock_quest("candles_quest_1")
 end
 
 function draw()
@@ -88,6 +83,9 @@ function click(button, click_type)
         -- api_log("candles", api_gp(inst["id"], "stats"))
 ---@diagnostic disable-next-line: param-type-mismatch
         api_log("candles", api_get_inst(inst["id"]))
+---@diagnostic disable-next-line: param-type-mismatch
+        api_log("candles", api_get_inst(inst["menu_id"]))
+        api_log("candles", api_gp(inst["menu_id"], "_fields"))
       end
     end
   end

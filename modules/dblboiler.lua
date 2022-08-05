@@ -75,9 +75,13 @@ function db_draw(menu_id)
   local gui2 = api_get_inst(api_gp(menu_id, "dbl_boil_smoke"))
   local spr2 = api_gp(menu_id, "smoke_sprite")
 
+---@diagnostic disable-next-line: need-check-nil
   local gx = gui["x"] - cam["x"]
+  ---@diagnostic disable-next-line: need-check-nil
   local gy = gui["y"] - cam["y"]
+  ---@diagnostic disable-next-line: need-check-nil
   local g2x = gui2["x"] - cam["x"]
+  ---@diagnostic disable-next-line: need-check-nil
   local g2y = gui2["y"] - cam["y"]
   
   local progress = (api_gp(menu_id, "p_start") / api_gp(menu_id, "p_end") * 73)
@@ -85,12 +89,14 @@ function db_draw(menu_id)
 
   api_draw_sprite_part(spr, 2, 0, 0, progress, 10, gx, gy)
   api_draw_sprite(spr, 1, gx, gy)
+---@diagnostic disable-next-line: need-check-nil
   if api_get_highlighted("ui") == gui["id"] then
     api_draw_sprite(spr, 0, gx, gy)
   end
   
   api_draw_sprite_part(spr2, 2, 0, 41-smoke, 27, smoke, g2x, g2y+(41-smoke))
   api_draw_sprite(spr2, 1, g2x, g2y)
+---@diagnostic disable-next-line: need-check-nil
   if api_get_highlighted("ui") == gui2["id"] then
     api_draw_sprite(spr2, 0, g2x, g2y)
   end

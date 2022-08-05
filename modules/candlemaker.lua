@@ -102,11 +102,14 @@ function cm_draw(menu_id)
   local cam = api_get_cam()
   local gui = api_get_inst(api_gp(menu_id, "cm_progress_bar"))
   local spr = api_gp(menu_id, "cm_progress_bar_sprite")
+  ---@diagnostic disable-next-line: need-check-nil
   local gx = gui["x"] - cam["x"]
+  ---@diagnostic disable-next-line: need-check-nil
   local gy = gui["y"] - cam["y"]
   local progress = (api_gp(menu_id, "p_start") / api_gp(menu_id, "p_end") * 45)
   api_draw_sprite_part(spr, 2, 0, 0, progress, 10, gx, gy)
   api_draw_sprite(spr, 1, gx, gy)
+  ---@diagnostic disable-next-line: need-check-nil
   if api_get_highlighted("ui") == gui["id"] then
     api_draw_sprite(spr, 0, gx, gy)
   end
@@ -114,11 +117,14 @@ function cm_draw(menu_id)
   cam = api_get_cam()
   gui = api_get_inst(api_gp(menu_id, "cm_down_bar1"))
   spr = api_gp(menu_id, "cm_down_bar1_sprite")
+  ---@diagnostic disable-next-line: need-check-nil
   gx = gui["x"] - cam["x"]
+  ---@diagnostic disable-next-line: need-check-nil
   gy = gui["y"] - cam["y"]
   progress = (api_gp(menu_id, "d1_start") / api_gp(menu_id, "d1_end") * 24)
   api_draw_sprite_part(spr, 2, 0, 0, 10, progress, gx, gy)
   api_draw_sprite(spr, 1, gx, gy)
+  ---@diagnostic disable-next-line: need-check-nil
   if api_get_highlighted("ui") == gui["id"] then
     api_draw_sprite(spr, 0, gx, gy)
   end
@@ -126,11 +132,14 @@ function cm_draw(menu_id)
   cam = api_get_cam()
   gui = api_get_inst(api_gp(menu_id, "cm_down_bar2"))
   spr = api_gp(menu_id, "cm_down_bar2_sprite")
+  ---@diagnostic disable-next-line: need-check-nil
   gx = gui["x"] - cam["x"]
+  ---@diagnostic disable-next-line: need-check-nil
   gy = gui["y"] - cam["y"]
   progress = (api_gp(menu_id, "d2_start") / api_gp(menu_id, "d2_end") * 24)
   api_draw_sprite_part(spr, 2, 0, 0, 10, progress, gx, gy)
   api_draw_sprite(spr, 1, gx, gy)
+  ---@diagnostic disable-next-line: need-check-nil
   if api_get_highlighted("ui") == gui["id"] then
     api_draw_sprite(spr, 0, gx, gy)
   end
@@ -138,11 +147,14 @@ function cm_draw(menu_id)
   cam = api_get_cam()
   gui = api_get_inst(api_gp(menu_id, "cm_down_bar3"))
   spr = api_gp(menu_id, "cm_down_bar3_sprite")
+  ---@diagnostic disable-next-line: need-check-nil
   gx = gui["x"] - cam["x"]
+  ---@diagnostic disable-next-line: need-check-nil
   gy = gui["y"] - cam["y"]
   progress = (api_gp(menu_id, "d3_start") / api_gp(menu_id, "d3_end") * 24)
   api_draw_sprite_part(spr, 2, 0, 0, 10, progress, gx, gy)
   api_draw_sprite(spr, 1, gx, gy)
+  ---@diagnostic disable-next-line: need-check-nil
   if api_get_highlighted("ui") == gui["id"] then
     api_draw_sprite(spr, 0, gx, gy)
   end
@@ -150,11 +162,14 @@ function cm_draw(menu_id)
   cam = api_get_cam()
   gui = api_get_inst(api_gp(menu_id, "cm_down_bar4"))
   spr = api_gp(menu_id, "cm_down_bar4_sprite")
+  ---@diagnostic disable-next-line: need-check-nil
   gx = gui["x"] - cam["x"]
+  ---@diagnostic disable-next-line: need-check-nil
   gy = gui["y"] - cam["y"]
   progress = (api_gp(menu_id, "d4_start") / api_gp(menu_id, "d4_end") * 24)
   api_draw_sprite_part(spr, 2, 0, 0, 10, progress, gx, gy)
   api_draw_sprite(spr, 1, gx, gy)
+  ---@diagnostic disable-next-line: need-check-nil
   if api_get_highlighted("ui") == gui["id"] then
     api_draw_sprite(spr, 0, gx, gy)
   end

@@ -2,12 +2,12 @@ function define_dyestation()
   api_define_menu_object({
     id = "cnd_dyestation",
     name = "Candle and Bag Dye Station",
-    category = "crafting",
+    category = "Crafting",
     tooltip = "A normal Dye Station.....now with candles!",
     shop_buy = 0,
     shop_sell = 0,
     layout = {
-      {7, 17, "Input", {"backpack1", "candles_candle19a"}},
+      {7, 17, "Input", {"backpack1", "candles_candle19b"}},
       {38, 17, "Input", {"dyeX"}}
     },
     buttons = {
@@ -74,7 +74,7 @@ function cnd_dye_click(menu_id)
   elseif string.sub(item_input["item"],1, 10) == "candles_ca" then
     local player = api_get_player_position()
 ---@diagnostic disable-next-line: missing-parameter
-    api_create_item("candles_candle" .. string.sub(dye_input["item"], 4) .. "a", 1, player["x"], player["y"])
+    api_create_item("candles_candle" .. string.sub(dye_input["item"], 4) .. "b", 1, player["x"], player["y"])
     api_slot_decr(item_input["id"])
     api_slot_decr(dye_input["id"])
     api_draw_slots(menu_id)
