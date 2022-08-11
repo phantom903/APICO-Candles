@@ -15,9 +15,9 @@ function define_quests()
   },{
     {text = "Welcome to APICO Candle Making!"},
     {text = ""},
-    {text = "Time to start making use of all that excess beeswax - make some useful candles, or just sell them for profit!"},
+    {text = "Time to start making use of all that beeswax - make some useful candles, or just sell them for profit!"},
     }, {
-    {text = "First thing's first - go find Phoebee and say hi!"},
+    {text = "First thing\'s first - go find Phoebee and say hi!"},
     {gif = "gifq1", height = 66}
   },
   "npcTrigger")
@@ -29,17 +29,71 @@ function define_quests()
     icon = "npc878",
 ---@diagnostic disable-next-line: assign-type-mismatch
     reward = MOD_NAME .. "_fiber@9",
-    unlock = {},
+    unlock = {"candles_quest_3"},
   },{
-    {text = "Now you've met Phoebee, have a look at their shop"},
+    {text = "Now you\'ve met Phoebee, have a look at their shop"},
     {text = ""},
-    {text = "Eventually they'll sell lots of useful items - for now, just fiber"},
+    {text = "Eventually they\'ll sell lots of useful items - for now, just fiber"},
     }, {
     {text = "Grab a fiber, then check back to see what we can make!"},
+    {text = "Of course, there may be other places to find fibers - but let\'s not beat around the bush (or shrub, for that matter....)"},
     {gif = "gifq1", height = 66}
   },
   "npcShopTrigger")
+
+  api_define_quest({
+    id = "candles_quest_3",
+    title = "Can I get a wick?",
+    reqs = {MOD_NAME .. "_cndwick@1", "workbench2@1"},
+    icon = "npc878",
+---@diagnostic disable-next-line: assign-type-mismatch
+    reward = MOD_NAME .. "_fiber@10",
+    unlock = {"candles_quest_4"},
+  },{
+    {text = "Now you have enough fibers to make a candle wick - but you\'ll need a new table to craft it"},
+    {text = ""},
+    {text = "Craft a Mod Workbench, and use it to make a candle wick"},
+    }, {
+    {text = "The Mod Workbench has many uses, so keep it to hand!"},
+    {gif = "gifq1", height = 66}
+  })
+
+  api_define_quest({
+    id = "candles_quest_4",
+    title = "None of your beeswax",
+    reqs = {"beeswax@20", "canister1@2"},
+    icon = "npc878",
+---@diagnostic disable-next-line: assign-type-mismatch
+    reward = MOD_NAME .. "_double_boiler",
+    unlock = {"candles_quest_5"},
+  },{
+    {text = "We\'ll be making candles from beeswax, so you\'d better start gathering some"},
+    {text = ""},
+    {text = "Beeswax can be gathered in the usual way, by filling and processing frames in an apiary"},
+    }, {
+    {text = "You should probably grab some canisters too, to fill with freshly melted wax!"},
+    {gif = "gifq1", height = 66}
+  })
+
+  api_define_quest({
+    id = "candles_quest_5",
+    title = "",
+    reqs = {},
+    icon = "npc878",
+---@diagnostic disable-next-line: assign-type-mismatch
+    reward = MOD_NAME .. "",
+    unlock = {"candles_quest_6"},
+  },{
+    {text = ""},
+    {text = ""},
+    {text = ""},
+    }, {
+    {text = ""},
+    {gif = "gifq1", height = 66}
+  })
 end
+
+
 
 function npcTrigger()
   local friend = api_get_menu_objects(nil, "npc878")
