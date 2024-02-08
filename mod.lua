@@ -1,5 +1,12 @@
 -- Candles Mod v0.0
 
+function contains(list, x)
+	for _, v in pairs(list) do
+		if v == x then return true end
+	end
+	return false
+end
+
 MOD_NAME = "candles"
 MOD_VERSION = "0.0"
 
@@ -12,7 +19,7 @@ end
 function register()
   return {
     name = MOD_NAME,
-    hooks = {"ready", "click"},
+    hooks = {"ready", "click", "destroy"},
     modules = {"candle", "dblboiler", "candlemaker", "commands", "npc", "candles_all", "define", "dyestation", "quests"}
   }
 end
@@ -32,23 +39,20 @@ function init()
   define_machines()
   define_quests()
   define_phoebee()
-  -- define_recipe_book()
   return "Success"
 end
+
+TREESLIST = {}
 
 function ready()
   api_unlock_quest("candles_quest_1")
 end
 
-function draw()
+function destroy(id, x, y, oid)
+  if contains(TREESLIST, id) then
+    api_log("candles", "Tree destroyed")
+  end
 end
-
--- function create(id, x, y, oid, inst_type)
---   if oid == "dyestation" then
---     api_destroy_inst(id)
---     api_give_item("candles_cnd_dyestation", 1)
---   end
--- end
 
 function click(button, click_type)
   if click_type == "PRESSED"then
@@ -61,7 +65,7 @@ function click(button, click_type)
 ---@diagnostic disable-next-line: missing-parameter
           api_create_item("candles_fiber", 1, inst["x"], inst["y"])
         end
-      elseif inst ~= nil and string.sub(inst["oid"], 1, 10) == "candles_ca" then
+      elseif inst ~= nil and string.sub(inst["oid"], 1, 10) == "candles_ca" and CMOD_DEVMODE == true then
 ---@diagnostic disable-next-line: param-type-mismatch
         api_log("candles", inst)
         for i = 1, NUM_CANDLES do
@@ -73,13 +77,7 @@ function click(button, click_type)
             api_destroy_inst(inst["id"])
           end
         end
-        -- for i,j in pairs(CANDLES_LIGHTABLE) do
-        --   if inst["oid"] == j then
-        --     api_create_obj("candles_candle" .. i .. "c", inst["x"], inst["y"])
-        --     api_destroy_inst(inst["id"])
-        --   end
-        -- end
-      elseif inst ~= nil then
+      elseif inst ~= nil and CMOD_DEVMODE == true then
         -- api_log("candles", api_gp(inst["id"], "stats"))
 ---@diagnostic disable-next-line: param-type-mismatch
         api_log("candles", api_get_inst(inst["id"]))
@@ -87,16 +85,9 @@ function click(button, click_type)
         api_log("candles", api_get_inst(inst["menu_id"]))
         api_log("candles", api_gp(inst["menu_id"], "_fields"))
       end
+      if inst ~= nil and string.sub(inst["oid"], 1, 4) == "tree" and contains(TREESLIST, inst[id]) == false then
+        table.insert(TREESLIST, inst["id"])
+      end
     end
   end
 end
-
--- function worldgen(before_objects)
---   if before_objects then
---     for x = 1200, 1360, 16 do
---       for y = 1200, 1360, 16 do
---         api_set_ground("grass1", x, y)
---       end
---     end
---   end
--- end
